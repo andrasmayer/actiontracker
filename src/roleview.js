@@ -1,4 +1,5 @@
-const {DropDowns} = await import(`./DropDowns.js${app_version}`)
+const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`)
+
 
 export const adminView = (itm, Topic) => {
     let addin = ``
@@ -9,12 +10,12 @@ export const adminView = (itm, Topic) => {
     
     
     return `
-    <tr>
+    <tr rowid="${itm.id}">
         <td>${itm.id}</td>
-        <td>${DropDowns({element:Object.keys(Topic.erTypes), className:"status_1", selected:itm.erTypes, text:Topic.erTypes[itm.erTypes]})}</td>
-        <td>${itm.responsible}</td>
-        <td>${itm.creationDate}</td>
-        <td>${itm.expireDate}</td>
+        <td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>
+        <td><input class="responsible" value="${itm.responsible}"></td>
+        <td><input type="date" class="creationDate" value="${itm.creationDate}"></td>
+        <td><input type="date" class="expireDate" value="${itm.expireDate}"></td>
         <td>${DropDowns({element:Topic.status_1, className:"status_1", selected:itm.status_1})}</td>
         <td>${Topic.status_1[itm.status_2]}</td>
         <td><textarea class="comment">${itm.comment}</textarea></td>
@@ -32,7 +33,7 @@ export const responsibleView = (itm, Topic) => {
     
     
     return `
-    <tr>
+    <tr rowid="${itm.id}">
         <td>${itm.id}</td>
         <td>${Topic.erTypes[itm.erTypes].title}</td>
         <td>${itm.responsible}</td>
