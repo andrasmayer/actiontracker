@@ -1,5 +1,5 @@
 const {Topic} = await import(`./Topic.js${app_version}`)
-const {DropDowns} = await import(`./DropDowns.js${app_version}`)
+const {adminView, responsibleView, guestView} = await import(`./roleview.js${app_version}`)
 
 
 
@@ -15,36 +15,31 @@ export const createHeader = (header)=>{
 }
 
 
-export const buildFeed = (tasks) =>{
-    let addin = `` 
+export const buildFeed = (tasks, userID) =>{
+    console.log(userID)
+    const isAdmin = Topic.contributors.includes(userID)
+    let isResponsible = false
+
+
+
+   
 
     let context = ``
     tasks.forEach((itm)=>{
-        addin = ``
-        Object.keys(Topic.privateHeaders).forEach((key)=>{
-            addin += `<td>${itm.addin[key]}</td>`
-        })
+        console.log(userID == itm.responsible)
 
-        context += `
-        <tr>
-            <td>${itm.id}</td>
-            <td>${Topic.erTypes[itm.erTypes].title}</td>
-            <td>${itm.responsible}</td>
-            <td>${itm.creationDate}</td>
-            <td>${itm.expireDate}</td>
-            <td>${DropDowns({element:Topic.status_1, className:"status_1", selected:itm.status_1})}</td>
-            <td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>
-            <td>${itm.comment}</td>
-            ${addin}
-        </tr>
-        `
+
+
+        context += adminView(itm, Topic)
+        //context += guestView(itm, Topic)
+        //context += responsibleView(itm, Topic)
     })
     return context
 }
 
 
 
-export const createTable = ()=>{
+export const createTable = (userID)=>{
     return `
         <table id="topicTable">
             <thead>
@@ -60,7 +55,7 @@ export const createTable = ()=>{
                     ${createHeader(Topic.privateHeaders)}
                 </tr>
             </thead>
-            <tbody>${buildFeed(Topic.task)}</tbody>
+            <tbody>${buildFeed(Topic.task, userID)}</tbody>
         </table>
     `
 }
