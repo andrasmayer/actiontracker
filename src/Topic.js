@@ -7,7 +7,7 @@ export const Topic = {
     status_1:["open", "overdue", "closed"],
     status_2:["open", "closed"],
     erTypes:{
-        0:{title:"Valami rossz helyen van"},
+        0:{title:"Kérlek válassz"},
         1:{title:"Vevői reklamáció"},
         2:{title:"Egyéb"},
        

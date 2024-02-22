@@ -1,3 +1,5 @@
+const {App} = await import(`./App.js${app_version}`)
+console.log(App)
 const fire = (event, keyCode, Topic) =>{
     if(keyCode == null || keyCode == 13){
         const target = event.target
@@ -21,11 +23,43 @@ const fire = (event, keyCode, Topic) =>{
 }
 
 
+const today = ()=>{
+    let date = new Date().toLocaleDateString('en-CA')
+    return date
+}
+
+
 export const events = (Topic) =>{
     
     const inputFields = document.querySelectorAll("input")
     const inputTextAreas = document.querySelectorAll("textarea")
     const inputSelects = document.querySelectorAll("select")
+    const newTask = document.getElementById("newTask")
+
+    newTask.addEventListener("click", (event)=>{
+        const tasks = Object.keys(Topic.task)
+        //const newID = Topic.task[tasks[tasks.length - 1]].id + 1
+        const newID = 1
+        console.log(newID)
+        let task = {id:newID, erTypes:0, responsible: null, status_1:0, status_2:0, comment:"", creationDate:today() , expireDate:"0000-00-00", addin:{} }
+        Topic.task.push(task)
+
+        Object.keys(Topic.privateHeaders).forEach((key)=>{
+            task.addin[key] = ""
+            
+        })
+
+        console.log(App)
+
+        //App.root.innerHTML = App.init(App.userID)
+
+       
+
+    })
+
+
+
+
 
     inputSelects.forEach((itm)=>{
         itm.addEventListener("change", (event)=>{
