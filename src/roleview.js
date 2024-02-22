@@ -2,12 +2,13 @@ const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`
 
 
 export const adminView = (itm, Topic) => {
-    let addin = ``
+    console.log(Object.keys(Topic.privateHeaders))
+    /*    let addin = ``
     Object.keys(Topic.privateHeaders).forEach((key)=>{
         addin += `<td><textarea class="addin_${key}">${itm.addin[key]}</textarea></td>`
     })
 
-    
+  
     
     return `
     <tr rowid="${itm.id}">
@@ -21,7 +22,7 @@ export const adminView = (itm, Topic) => {
         <td><textarea class="comment">${itm.comment}</textarea></td>
         ${addin}
     </tr>
-    `
+    `*/
 }
 
 export const responsibleView = (itm, Topic) => {

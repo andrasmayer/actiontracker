@@ -1,3 +1,5 @@
+const {ajax} = await import(`./Hooks/ajax/ajax.js${app_version}`)
+/*
 export const Topic = {
     id: 1,
     title: "Minta Topic",
@@ -49,7 +51,9 @@ export const Topic = {
         },
     ]
 }
-
+*/
+export const Topic = ajax("get", "./server/getTopic/getTopic.php", "json", {topicid:1})
+console.log(Topic)
 
 
 
