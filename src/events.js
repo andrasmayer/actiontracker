@@ -1,5 +1,4 @@
 const {App} = await import(`./App.js${app_version}`)
-console.log(App)
 const fire = (event, keyCode, Topic) =>{
     if(keyCode == null || keyCode == 13){
         const target = event.target
@@ -17,7 +16,6 @@ const fire = (event, keyCode, Topic) =>{
 
 
         }
-        //console.log(Topic.task[rowID])
 
     }
 }
@@ -38,8 +36,7 @@ export const events = (Topic) =>{
 
     newTask.addEventListener("click", (event)=>{
         const tasks = Object.keys(Topic.task)
-        //const newID = Topic.task[tasks[tasks.length - 1]].id + 1
-        const newID = 1
+        const newID = Topic.task[tasks[tasks.length - 1]].id + 1
         console.log(newID)
         let task = {id:newID, erTypes:0, responsible: null, status_1:0, status_2:0, comment:"", creationDate:today() , expireDate:"0000-00-00", addin:{} }
         Topic.task.push(task)
@@ -49,16 +46,8 @@ export const events = (Topic) =>{
             
         })
 
-        console.log(App)
-
-        //App.root.innerHTML = App.init(App.userID)
-
-       
-
+        App(events)
     })
-
-
-
 
 
     inputSelects.forEach((itm)=>{
@@ -83,8 +72,5 @@ export const events = (Topic) =>{
     })
 
 
-
-
-
 }
-        console.log("/src/event.js 56. sor. Backend Integráció következik")
+        console.log("/src/event.js 50. sor. Backend Integráció következik\n newID backendből kell megoldani")
