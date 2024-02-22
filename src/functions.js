@@ -1,8 +1,28 @@
 const {Topic} = await import(`./Topic.js${app_version}`)
-const {DropDowns} = await import(`./DropDowns.js${app_version}`)
+const {adminView, responsibleView, guestView} = await import(`./roleview.js${app_version}`)
+
+const docHeader = (data, userID)=>{
+    let context = ""
+    const isAdmin = Topic.contributors.includes(userID)
+    if(isAdmin === true){ context += 
+        `<div class="controls">
+            <button id="newTask"> Új feladat </button>
+        </div>`
+    }
 
 
+    return `
+        <div class="docHeader">
+            <div>ID: ${data.id} </div>
+            <div>Név: ${data.title} </div>
+            <div>Tulajdonos: ${data.creator} </div>
+            <div>Létrehozva: ${data.creationDate} </div>
+            <div>Résztvevők: ${data.contributors} </div>
+            ${context}
+        </div>
+    `
 
+}
 
 
 export const createHeader = (header)=>{
@@ -14,54 +34,46 @@ export const createHeader = (header)=>{
    return context
 }
 
-
-export const buildFeed = (tasks) =>{
-    let addin = `` 
-
+export const buildFeed = (tasks, userID) =>{
+    const isAdmin = Topic.contributors.includes(userID)
+    let isResponsible = false
     let context = ``
-    tasks.forEach((itm)=>{
-        addin = ``
-        Object.keys(Topic.privateHeaders).forEach((key)=>{
-            addin += `<td>${itm.addin[key]}</td>`
-        })
 
-        context += `
-        <tr>
-            <td>${itm.id}</td>
-            <td>${Topic.erTypes[itm.erTypes].title}</td>
-            <td>${itm.responsible}</td>
-            <td>${itm.creationDate}</td>
-            <td>${itm.expireDate}</td>
-            <td>${DropDowns({element:Topic.status_1, className:"status_1", selected:itm.status_1})}</td>
-            <td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>
-            <td>${itm.comment}</td>
-            ${addin}
-        </tr>
-        `
+
+
+    tasks.forEach((itm)=>{
+        isResponsible = itm.responsible == userID
+        if(isAdmin === true){ context += adminView(itm, Topic) }
+        else if(isResponsible === true){ context += responsibleView(itm, Topic) }
+        else{ context += guestView(itm, Topic) }
+        
+    
     })
     return context
 }
 
 
-
-export const createTable = ()=>{
+export const createTable = (userID)=>{
     return `
-        <table id="topicTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Kategória</th>
-                    <th>Felelős</th>
-                    <th>Felvéve</th>
-                    <th>Határidő</th>
-                    <th>Ellenőrizve</th>
-                    <th>Állapot</th>
-                    <th>Komment </th>
-                    ${createHeader(Topic.privateHeaders)}
-                </tr>
-            </thead>
-            <tbody>${buildFeed(Topic.task)}</tbody>
-        </table>
+        <div>
+            ${docHeader(Topic, userID)}
+            <table id="topicTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kategória</th>
+                        <th>Felelős</th>
+                        <th>Felvéve</th>
+                        <th>Határidő</th>
+                        <th>Ellenőrizve</th>
+                        <th>Állapot</th>
+                        <th>Komment </th>
+                        ${createHeader(Topic.privateHeaders)}
+                    </tr>
+                </thead>
+                <tbody>${buildFeed(Topic.task, userID)}</tbody>
+            </table>
+        </div>
     `
 }
 
