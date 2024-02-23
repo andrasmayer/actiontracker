@@ -1,4 +1,8 @@
 const {ajax} = await import(`./Hooks/ajax/ajax.js${app_version}`)
+<<<<<<< HEAD
+=======
+const {$_GET} = await import(`./Hooks/findGET/findGET.js${app_version}`)
+>>>>>>> master
 /*
 export const Topic = {
     id: 1,
@@ -51,11 +55,30 @@ export const Topic = {
         },
     ]
 }
+<<<<<<< HEAD
 */
 export const Topic = ajax("get", "./server/getTopic/getTopic.php", "json", {topicid:1})
 console.log(Topic)
 
 
+=======
+
+*/
+
+const Topic = ajax("get", "./server/getTopic/getTopic.php", "json", {topicid:$_GET.topicid})
+if(Topic != false){
+    Topic.privateHeaders = JSON.parse(Topic.privateHeaders)
+    Topic.erTypes = JSON.parse(Topic.erTypes)
+    Topic.status_1 = ["open", "overdue", "closed"]
+    Topic.status_2 = ["open", "closed"]
+    Topic.task.forEach( (itm,key)=>{
+        Topic.task[key].addin = JSON.parse(itm.addin)
+        //console.log(itm.addin)
+    })    
+
+}
+export {Topic}
+>>>>>>> master
 
 
 

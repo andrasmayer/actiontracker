@@ -1,5 +1,6 @@
 const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`)
 
+<<<<<<< HEAD
 
 export const adminView = (itm, Topic) => {
     console.log(Object.keys(Topic.privateHeaders))
@@ -10,8 +11,15 @@ export const adminView = (itm, Topic) => {
 
   
     
+=======
+export const adminView = (itm, Topic, key) => {
+    let addin = ``
+    Object.keys(Topic.privateHeaders).forEach((key2)=>{
+        addin += `<td><textarea class="addin_${key2}">${itm.addin[key2]}</textarea></td>`
+    })
+>>>>>>> master
     return `
-    <tr rowid="${itm.id}">
+    <tr rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
         <td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>
         <td><input class="responsible" value="${itm.responsible}"></td>
@@ -22,19 +30,22 @@ export const adminView = (itm, Topic) => {
         <td><textarea class="comment">${itm.comment}</textarea></td>
         ${addin}
     </tr>
+<<<<<<< HEAD
     `*/
+=======
+    `
+    
+>>>>>>> master
 }
 
-export const responsibleView = (itm, Topic) => {
+export const responsibleView = (itm, Topic, key) => {
     let addin = ``
     Object.keys(Topic.privateHeaders).forEach((key)=>{
         addin += `<td><textarea class="addin_${key}">${itm.addin[key]}</textarea></td>`
     })
-
-    
-    
+  
     return `
-    <tr rowid="${itm.id}">
+    <tr rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
         <td>${Topic.erTypes[itm.erTypes].title}</td>
         <td>${itm.responsible}</td>
@@ -54,8 +65,6 @@ export const guestView = (itm, Topic) => {
         addin += `<td>${itm.addin[key]}</td>`
     })
 
- 
- 
     return `
     <tr>
         <td>${itm.id}</td>

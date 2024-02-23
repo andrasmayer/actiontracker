@@ -38,10 +38,11 @@ export const buildFeed = (tasks, userID) =>{
     const isAdmin = Topic.contributors.includes(userID)
     let isResponsible = false
     let context = ``
-    tasks.forEach((itm)=>{
+
+    tasks.forEach((itm,key)=>{
         isResponsible = itm.responsible == userID
-        if(isAdmin === true){ context += adminView(itm, Topic) }
-        else if(isResponsible === true){ context += responsibleView(itm, Topic) }
+        if(isAdmin === true){ context += adminView(itm, Topic, key) }
+        else if(isResponsible === true){ context += responsibleView(itm, Topic, key) }
         else{ context += guestView(itm, Topic) }
     })
     return context

@@ -25,6 +25,7 @@
         $sql = "select * FROM tasks where topicid = ?";
         $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute([$_GET["topicid"]]);  
+<<<<<<< HEAD
         $tasks = $sth->fetchAll(\PDO::FETCH_ASSOC);
         $topic["task"] = [];
 
@@ -36,5 +37,26 @@
             else{$topic["task"][] = $row;}
 
         }
+=======
+        $topic["task"] = $sth->fetchAll(\PDO::FETCH_ASSOC);
+      //  $topic["task"] = [];
+/*
+        $counter = 0;
+        foreach($tasks as $key => $row){
+            $topic["task"][] = [];
+
+            var_dump($row);
+echo "<br><br>";
+
+            if( in_array($key, ["addin"])) {
+                $tasks[$key] = json_decode($row, true);
+                $topic["task"][$counter][$key] = $tasks[$key];
+            }
+            else{$topic["task"][] = $row;}
+
+            $counter++;
+        }
+        */
+>>>>>>> master
     }
 echo json_encode($topic);
