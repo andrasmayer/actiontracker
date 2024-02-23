@@ -23,6 +23,6 @@ $stmt->execute([
 $sql = "select max(id)  from tasks where topicid = ?";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $sth->execute([ $_POST["topicid"] ]);
-$taskId = $sth->fetchAll(\PDO::FETCH_COLUMN,0);
+$taskId = $sth->fetch(\PDO::FETCH_COLUMN,0);
 
 echo json_encode($taskId);

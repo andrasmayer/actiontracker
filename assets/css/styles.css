@@ -1,0 +1,37 @@
+#topicTable{
+    border:1px solid black;
+    border-collapse: collapse;
+    text-align:center
+}
+
+#topicTable td{
+    border:1px solid black;
+
+}
+
+.NavBar{
+    padding: 3px;
+
+}
+
+.NavBar a{
+    text-decoration: none;
+    color: black;
+    padding: 7px;
+    background-color: aqua;
+    border-right: 3px solid white;
+    border-radius: 3px;
+
+}
+
+.page-content{
+    padding: 1rem;
+
+}
+
+.list-item{
+    text-decoration: none;
+    color: black;
+    padding: 2px;
+
+}

@@ -1,5 +1,5 @@
-const {ajax} = await import(`./Hooks/ajax/ajax.js${app_version}`)
-const {$_GET} = await import(`./Hooks/findGET/findGET.js${app_version}`)
+const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
+const {$_GET} = await import(`../../Hooks/findGET/findGET.js${app_version}`)
 /* Így kéne kinéznie
 export const Topic = {
     id: 1,

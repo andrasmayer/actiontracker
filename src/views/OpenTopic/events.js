@@ -1,5 +1,5 @@
-﻿const {App} = await import(`./App.js${app_version}`)
-const {ajax} = await import(`./Hooks/ajax/ajax.js${app_version}`)
+﻿const {App} = await import(`../../App.js${app_version}`)
+const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
 
 const fire = (event, keyCode, Topic) =>{
     if(keyCode == null || keyCode == 13){
