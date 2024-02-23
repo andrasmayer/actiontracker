@@ -1,14 +1,22 @@
 const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`)
 
+<<<<<<< HEAD
 
 export const adminView = (itm, Topic) => {
     let addin = ``
+=======
+export const adminView = (itm, Topic) => {
+   let addin = ``
+>>>>>>> ef925af4142940aa12462eeb6ca80012b3ce2d4f
     Object.keys(Topic.privateHeaders).forEach((key)=>{
         addin += `<td><textarea class="addin_${key}">${itm.addin[key]}</textarea></td>`
     })
 
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> ef925af4142940aa12462eeb6ca80012b3ce2d4f
     return `
     <tr rowid="${itm.id}">
         <td>${itm.id}</td>
@@ -29,9 +37,13 @@ export const responsibleView = (itm, Topic) => {
     Object.keys(Topic.privateHeaders).forEach((key)=>{
         addin += `<td><textarea class="addin_${key}">${itm.addin[key]}</textarea></td>`
     })
+<<<<<<< HEAD
 
     
     
+=======
+  
+>>>>>>> ef925af4142940aa12462eeb6ca80012b3ce2d4f
     return `
     <tr rowid="${itm.id}">
         <td>${itm.id}</td>
@@ -68,4 +80,8 @@ export const guestView = (itm, Topic) => {
         ${addin}
     </tr>
     `
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ef925af4142940aa12462eeb6ca80012b3ce2d4f
