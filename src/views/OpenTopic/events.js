@@ -1,5 +1,4 @@
-﻿const {App} = await import(`../../App.js${app_version}`)
-const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
+﻿const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
 
 const fire = (event, keyCode, Topic) =>{
     if(keyCode == null || keyCode == 13){
@@ -15,7 +14,6 @@ const fire = (event, keyCode, Topic) =>{
             Topic.task[rowIndex].addin[prefix[1]] = OBJ.value
         }
 
-
         if(  OBJ.column.includes("addin_") === true ){
             OBJ.column  = "addin";
             OBJ.value   = JSON.stringify(Topic.task[rowIndex].addin);
@@ -23,16 +21,12 @@ const fire = (event, keyCode, Topic) =>{
         
         ajax("post", "./server/editTopic/editTask.php", "json", OBJ)
     }
-
-
 }
 
 const today = ()=>{
     let date = new Date().toLocaleDateString('en-CA')
     return date
 }
-
-
 
 export const events = (Topic) =>{
     
@@ -50,9 +44,9 @@ export const events = (Topic) =>{
         const newTaskId = ajax("post", "./server/editTopic/newTask.php", "json", {task:task,topicid:Topic.id})
         task.id = newTaskId
         Topic.task.push(task)
-        App(events)
+        location.reload()
+       // App(events) //Reload ment helyette
     })
-
 
     inputSelects.forEach((itm)=>{
         itm.addEventListener("change", (event)=>{
@@ -60,13 +54,11 @@ export const events = (Topic) =>{
         })
     })
 
-
     inputTextAreas.forEach((itm)=>{
         itm.addEventListener("keydown", (event)=>{
             fire(event, event.keyCode, Topic)
         })
     })
-
 
     inputFields.forEach((itm)=>{
         itm.addEventListener("keydown", (event)=>{

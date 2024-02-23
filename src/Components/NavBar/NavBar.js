@@ -1,6 +1,7 @@
 const {views} = await import(`../Router/views.js${app_version}`)
 const {$_GET} = await import(`../../Hooks/findGET/findGET.js${app_version}`)
 export const NavBar = () => {
+    const root = document.getElementById("root")
 
     const activeView = $_GET.view == null ? "Home" : $_GET.view
 
@@ -8,12 +9,15 @@ export const NavBar = () => {
     Object.keys(views).forEach((key)=>{
         context += `<a href="?view=${key}">${key}</a>`
     })
-    return`
+
+    const viewContext =  views[activeView]()
+    const output = viewContext.DOM != null ?   viewContext.DOM : viewContext
+
+    root.innerHTML = `
         <div>
             <div class="NavBar">${context}</div>
-            <div class="page-content">${views[activeView]({views:views})}</div>
-        </div>
-    `
+            <div class="page-content">${output}</div>
+        </div>`
 
-
+    if( viewContext.DOM != null ){  viewContext.events(viewContext.Topic)    }
 }
