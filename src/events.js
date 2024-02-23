@@ -1,4 +1,4 @@
-const fire = (event, keyCode, Topic) =>{
+const fire = (event, keyCode, Topic, App) =>{
     if(keyCode == null || keyCode == 13){
         const target = event.target
         const rowID = event.target.parentNode.parentNode.getAttribute("rowid")
@@ -16,12 +16,13 @@ const fire = (event, keyCode, Topic) =>{
 
         }
         //console.log(Topic.task[rowID])
-
+        App.root.innerHTML = App.init(App.userID)
+        console.log( App)
     }
 }
 
 
-export const events = (Topic) =>{
+export const events = (Topic, App) =>{
     
     const inputFields = document.querySelectorAll("input")
     const inputTextAreas = document.querySelectorAll("textarea")
@@ -30,14 +31,14 @@ export const events = (Topic) =>{
     inputSelects.forEach((itm)=>{
         itm.addEventListener("change", (event)=>{
             
-            fire(event, null, Topic)
+            fire(event, null, Topic, App)
         })
     })
 
 
     inputTextAreas.forEach((itm)=>{
         itm.addEventListener("keyup", (event)=>{
-            fire(event, event.keyCode, Topic)
+            fire(event, event.keyCode, Topic, App)
         })
     })
 

@@ -4,6 +4,6 @@ const userID = 266233
 const {createHeader, buildFeed, createTable} = await import(`./src/functions.js${app_version}`)
 const root = document.getElementById("root")
 root.innerHTML = createTable(userID)
-events(Topic)
+events(Topic,{root:root, init:createTable, userID:userID})
 
 
