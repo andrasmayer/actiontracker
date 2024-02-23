@@ -61,11 +61,13 @@ if(Topic != false){
     Topic.erTypes = JSON.parse(Topic.erTypes)
     Topic.status_1 = ["open", "overdue", "closed"]
     Topic.status_2 = ["open", "closed"]
+    Topic.task.forEach( (itm,key)=>{
+        Topic.task[key].addin = JSON.parse(itm.addin)
+        //console.log(itm.addin)
+    })    
+
 }
 export {Topic}
 
-
-
-console.log($_GET)
 
 
