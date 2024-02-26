@@ -14,8 +14,14 @@ export const NavBar = () => {
     const output = viewContext.DOM != null ?   viewContext.DOM : viewContext
 
     root.innerHTML = `
+        <nav>
+            <div class="navbar">
+                <ul class="menu">
+                    <li>${context}</li>
+                </ul>
+            </div>
+        </nav>
         <div>
-            <div class="NavBar">${context}</div>
             <div class="page-content">${output}</div>
         </div>`
 

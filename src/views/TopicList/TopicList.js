@@ -4,12 +4,18 @@ export const TopicList = () =>{
        
     const list = ajax("get", "server/getTopic/TopicList.php", "json")
     list.forEach((itm) => {
-        context += 
-        `<a class="list-item" href="?view=OpenTopic&topicid=${itm.id}">
-            ${itm.id} 
-            <strong>${itm.title}</strong>
-            ${itm.creationDate} 
-        </a>`
+        context += `
+        
+        <div class="card">   
+            <div class="container">
+                <a class="list-item" href="?view=OpenTopic&topicid=${itm.id}">
+                    ${itm.id} 
+                    <strong>${itm.title}</strong>
+                    ${itm.creationDate} 
+                </a>
+            </div>
+        <div>
+        `
     })
 
     return `<div>
