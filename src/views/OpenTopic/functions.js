@@ -12,13 +12,17 @@ const docHeader = (data, userID)=>{
 
 
     return `
-        <div class="docHeader">
-            <div>ID: ${data.id} </div>
-            <div>Név: ${data.title} </div>
-            <div>Tulajdonos: ${data.creator} </div>
-            <div>Létrehozva: ${data.creationDate} </div>
-            <div>Résztvevők: ${data.contributors} </div>
-            ${context}
+        <div class="cardt">
+            <div class="containert">
+                <div class="docHeader">
+                    <div>ID: ${data.id} </div>
+                    <div>Név: ${data.title} </div>
+                    <div>Tulajdonos: ${data.creator} </div>
+                    <div>Létrehozva: ${data.creationDate} </div>
+                    <div>Résztvevők: ${data.contributors} </div>
+                    ${context}
+                </div>
+            </div>
         </div>
     `
 
