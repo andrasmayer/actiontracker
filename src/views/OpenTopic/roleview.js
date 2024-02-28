@@ -6,7 +6,7 @@ export const adminView = (itm, Topic, key) => {
         addin += `<td><textarea class="addin_${key2}">${itm.addin[key2]}</textarea></td>`
     })
     return `
-    <tr rowid="${itm.id}" rowindex="${key}">
+    <tr class="active-row" rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
         <td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>
         <td><input class="responsible" value="${itm.responsible}"></td>
@@ -28,7 +28,7 @@ export const responsibleView = (itm, Topic, key) => {
     })
   
     return `
-    <tr rowid="${itm.id}" rowindex="${key}">
+    <tr class="active-row" rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
         <td>${Topic.erTypes[itm.erTypes].title}</td>
         <td>${itm.responsible}</td>
@@ -49,7 +49,7 @@ export const guestView = (itm, Topic) => {
     })
 
     return `
-    <tr>
+    <tr class="active-row">
         <td>${itm.id}</td>
         <td>${Topic.erTypes[itm.erTypes].title}</td>
         <td>${itm.responsible}</td>

@@ -58,7 +58,7 @@ export const createTable = (userID)=>{
     return `
         <div>
             ${docHeader(Topic, userID)}
-            <table id="topicTable">
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>ID</th>
