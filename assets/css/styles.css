@@ -22,6 +22,7 @@
 
 }*/
 
+
 nav{
     position: fixed;
     left: 0;
@@ -59,6 +60,11 @@ nav .navbar .menu{
     text-decoration: none;
     padding: 8px;
     border-right: 10px transparent,
+}
+
+nav .active{
+    border-bottom: 1px solid white;
+
 }
 
 /*
@@ -190,4 +196,11 @@ nav .navbar .menu{
 .styled-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+}
+
+input, select, textarea{
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(179, 164, 130, .2) ;
+    padding: 1px;
 }
