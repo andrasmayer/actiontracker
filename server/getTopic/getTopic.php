@@ -13,7 +13,9 @@
                 $topic[$key] = json_decode($row, true);
             }
         }
-        $sql = "select * FROM tasks where topicid = ?";
+        $sql = "select tasks.*,users.username as responsibleName FROM tasks
+        left join users on users.dolszam = tasks.responsible
+        where topicid = ? order by tasks.id";
         $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute([$_GET["topicid"]]);  
         $topic["task"] = $sth->fetchAll(\PDO::FETCH_ASSOC);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 02:12 PM
+-- Generation Time: Mar 04, 2024 at 11:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,8 +45,9 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `erTypes`, `responsible`, `status_1`, `status_2`, `comment`, `creationDate`, `expireDate`, `addin`, `topicid`) VALUES
-(1, 0, 12345, 0, 0, 'Mintakomment', '2024-02-22', '2024-02-25', '{\"0\":\"\",\"1\":\"\",\"2\":\"random\",\"3\":\"radnom\"}', 1),
-(2, 0, 12345, 0, 0, 'Mintakomment', '2024-02-22', '2024-02-25', '{\"0\":\"\",\"1\":\"\",\"2\":\"random\",\"3\":\"radnom\"}', 1);
+(1, 1, 266248, 0, 0, '', '0000-00-00', '0000-00-00', '[\"\",\"\",\"\",\"\"]', 1),
+(2, 2, 270287, 1, 0, 'asdsa', '2024-02-13', '2024-02-12', '{\"0\":\"sdf\",\"1\":\"\",\"2\":\"\\nsd\",\"3\":\"sdd\"}', 1),
+(3, 2, 0, 0, 0, '', '0000-00-00', '0000-00-00', '[\"\",\"\",\"\",\"\"]', 1);
 
 -- --------------------------------------------------------
 
@@ -81,15 +82,37 @@ INSERT INTO `topics` (`id`, `title`, `creator`, `creationDate`, `contributors`, 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `dolszam` int(11) NOT NULL
+  `dolszam` int(11) NOT NULL,
+  `job_title` int(11) NOT NULL,
+  `passWord` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `dolszam`) VALUES
-(1, 'Tóth Kristóf Bence', 270287);
+INSERT INTO `users` (`id`, `username`, `dolszam`, `job_title`, `passWord`) VALUES
+(1, 'Tóth Kristóf Bence', 270287, 1, '47bce5c74f589f4867dbd57e9ca9f808'),
+(2, 'Mayer András', 266248, 2, '47bce5c74f589f4867dbd57e9ca9f808');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_job_titles`
+--
+
+CREATE TABLE `user_job_titles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `user_job_titles`
+--
+
+INSERT INTO `user_job_titles` (`id`, `name`) VALUES
+(1, 'Admin'),
+(2, 'Operator');
 
 --
 -- Indexes for dumped tables
@@ -114,6 +137,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_job_titles`
+--
+ALTER TABLE `user_job_titles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -121,7 +150,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `topics`
@@ -133,7 +162,13 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user_job_titles`
+--
+ALTER TABLE `user_job_titles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

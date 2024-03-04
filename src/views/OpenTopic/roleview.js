@@ -9,7 +9,7 @@ export const adminView = (itm, Topic, key) => {
     <tr class="active-row" rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
         <td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>
-        <td><input class="responsible" value="${itm.responsible}"></td>
+        <td><input class="responsible" value="${itm.responsibleName}"></td>
         <td><input type="date" class="creationDate" value="${itm.creationDate}"></td>
         <td><input type="date" class="expireDate" value="${itm.expireDate}"></td>
         <td>${DropDowns({element:Topic.status_1, className:"status_1", selected:itm.status_1})}</td>
@@ -31,7 +31,7 @@ export const responsibleView = (itm, Topic, key) => {
     <tr class="active-row" rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
         <td>${Topic.erTypes[itm.erTypes].title}</td>
-        <td>${itm.responsible}</td>
+        <td>${itm.responsibleName}</td>
         <td>${itm.creationDate}</td>
         <td>${itm.expireDate}</td>
         <td>${Topic.status_1[itm.status_1]}</td>
@@ -52,7 +52,7 @@ export const guestView = (itm, Topic) => {
     <tr class="active-row">
         <td>${itm.id}</td>
         <td>${Topic.erTypes[itm.erTypes].title}</td>
-        <td>${itm.responsible}</td>
+        <td>${itm.responsibleName}</td>
         <td>${itm.creationDate}</td>
         <td>${itm.expireDate}</td>
         <td>${Topic.status_1[itm.status_1]}</td>
