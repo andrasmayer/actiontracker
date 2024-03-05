@@ -7,7 +7,7 @@ const {TopicList} = await import(`../../views/TopicList/TopicList.js${app_versio
 
 export const views = {
     Home:{title:"Főoldal", fnc:Home, login:false},
-    OpenTopic:{title:null, fnc:OpenTopic, login:false},
+    OpenTopic:{title:"Topic", fnc:OpenTopic, login:false,hidden:true},
     MyTasks:{title:"Feladataim", fnc:MyTasks, login:true},
     CreateTopic:{title:"Topic létrehozása", fnc:CreateTopic, login:true},
     TopicList:{title:"Lista", fnc:TopicList, login:false}
