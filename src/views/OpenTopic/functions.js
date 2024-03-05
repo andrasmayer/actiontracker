@@ -1,5 +1,5 @@
 const {Topic} = await import(`./Topic.js${app_version}`)
-const {adminView, responsibleView, guestView} = await import(`./roleview.js${app_version}`)
+const {adminView, responsibleView,delegatedView, guestView} = await import(`./roleview.js${app_version}`)
 
 const docHeader = (data, userID)=>{
     let context = ""
@@ -41,12 +41,20 @@ export const createHeader = (header)=>{
 export const buildFeed = (tasks, userID) =>{
     const isAdmin = Topic.contributors.includes(userID)
     let isResponsible = false
+    let isDelegated = false
     let context = ``
 
     tasks.forEach((itm,key)=>{
-        isResponsible = itm.responsible == userID
+        //isResponsible = itm.responsible == userID || userID == itm.delegated
+        isResponsible = itm.responsible == userID 
+        isDelegated = itm.responsible == userID || userID == itm.delegated
+
+
+
+        //delegatedView
         if(isAdmin === true){ context += adminView(itm, Topic, key) }
         else if(isResponsible === true){ context += responsibleView(itm, Topic, key) }
+        else if(isDelegated === true){ context += delegatedView(itm, Topic, key) }
         else{ context += guestView(itm, Topic) }
     })
     return context
@@ -64,6 +72,7 @@ export const createTable = (userID)=>{
                         <th>ID</th>
                         <th>Kategória</th>
                         <th>Felelős</th>
+                        <th>Delegált</th>
                         <th>Felvéve</th>
                         <th>Határidő</th>
                         <th>Ellenőrizve</th>

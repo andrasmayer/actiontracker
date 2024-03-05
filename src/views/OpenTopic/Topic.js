@@ -10,6 +10,7 @@ if(Topic != false && typeof Topic != "undefined"){
     Topic.task.forEach( (itm,key)=>{
         Topic.task[key].addin = JSON.parse(itm.addin)
         if( itm.responsibleName == null){ Topic.task[key].responsibleName = "" } 
+        if( itm.delegatedName == null){ Topic.task[key].delegatedName = "" } 
     })    
 
 }

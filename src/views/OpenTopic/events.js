@@ -40,6 +40,7 @@ export const events = (Topic) =>{
     const newTask = document.getElementById("newTask")
     const responsible = document.querySelectorAll(".responsible")
 
+    newTask != null &&
     newTask.addEventListener("click", (event)=>{
         let task = { erTypes:0, responsible: "", status_1:0, status_2:0, comment:"", creationDate:today() , expireDate:"0000-00-00", addin:{} }
 
@@ -66,11 +67,15 @@ export const events = (Topic) =>{
 
     inputFields.forEach((itm)=>{
         itm.addEventListener("keydown", (event)=>{
-            if(itm.classList.contains("responsible") == false){ fire(event, event.keyCode, Topic)    }
+            if(
+                itm.classList.contains("responsible") == false && 
+                itm.classList.contains("delegated") == false 
+            
+            ){ fire(event, event.keyCode, Topic)    }
             else{
                 const hasSelect = itm.parentNode.querySelector("select")
                 hasSelect != null && hasSelect.remove()
-                itm.parentNode.insertAdjacentHTML('beforeend', FindUser(event.target.value) )
+                itm.parentNode.insertAdjacentHTML('beforeend', FindUser(event.target.value, itm.classList[0]) )
                 itm.parentNode.querySelector("select").addEventListener("change",(event_2)=>{
                 
                     let selectedOption = null

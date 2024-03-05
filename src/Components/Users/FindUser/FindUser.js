@@ -1,9 +1,9 @@
 const {ajax} = await import(`../../../Hooks/ajax/ajax.js${app_version}`)
 
 
-export const FindUser = (data) =>{
+export const FindUser = (data,className) =>{
     let context = `
-    <select id="selectUser">
+    <select>
         <option value="0">Kérlek válassz</option>
     `
     if( data.length >=3 ){

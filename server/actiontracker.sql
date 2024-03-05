@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 11:26 AM
+-- Generation Time: Mar 05, 2024 at 10:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,6 +31,7 @@ CREATE TABLE `tasks` (
   `id` int(11) NOT NULL,
   `erTypes` int(11) NOT NULL,
   `responsible` int(11) NOT NULL,
+  `delegated` int(11) NOT NULL,
   `status_1` int(11) NOT NULL,
   `status_2` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL,
@@ -44,10 +45,10 @@ CREATE TABLE `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `erTypes`, `responsible`, `status_1`, `status_2`, `comment`, `creationDate`, `expireDate`, `addin`, `topicid`) VALUES
-(1, 1, 266248, 0, 0, '', '0000-00-00', '0000-00-00', '[\"\",\"\",\"\",\"\"]', 1),
-(2, 2, 270287, 1, 0, 'asdsa', '2024-02-13', '2024-02-12', '{\"0\":\"sdf\",\"1\":\"\",\"2\":\"\\nsd\",\"3\":\"sdd\"}', 1),
-(3, 2, 0, 0, 0, '', '0000-00-00', '0000-00-00', '[\"\",\"\",\"\",\"\"]', 1);
+INSERT INTO `tasks` (`id`, `erTypes`, `responsible`, `delegated`, `status_1`, `status_2`, `comment`, `creationDate`, `expireDate`, `addin`, `topicid`) VALUES
+(1, 2, 222222, 266248, 0, 1, 'asdad', '0000-00-00', '0000-00-00', '[\"\",\"\",\"\",\"\"]', 1),
+(2, 2, 270287, 0, 1, 0, 'asdsa', '2024-02-13', '2024-02-12', '{\"0\":\"sdf\",\"1\":\"\",\"2\":\"\\nsd\",\"3\":\"sdd\"}', 1),
+(3, 2, 0, 0, 0, 0, '', '0000-00-00', '0000-00-00', '[\"\",\"\",\"\",\"\"]', 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `title`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`, `lastModified`) VALUES
-(1, 'asdfg', 270287, '2024-02-22 13:00:24', '[266248, 270287]', '{\"0\":{\"title\":\"Kérlek válassz\"},\"1\":{\"title\":\"Vevői reklamáció\"},\"2\":{\"title\":\"Egyéb\"}}', '{\"0\":\"Col 1\",\"1\":\"Col 2\",\"2\":\"Col 3\",\"3\":\"Col 4\"}', '2024-02-22 13:07:33');
+(1, 'asdfg', 270287, '2024-02-22 13:00:24', '[270287]', '{\"0\":{\"title\":\"Kérlek válassz\"},\"1\":{\"title\":\"Vevői reklamáció\"},\"2\":{\"title\":\"Egyéb\"}}', '{\"0\":\"Col 1\",\"1\":\"Col 2\",\"2\":\"Col 3\",\"3\":\"Col 4\"}', '2024-03-05 08:53:43');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `dolszam`, `job_title`, `passWord`) VALUES
 (1, 'Tóth Kristóf Bence', 270287, 1, '47bce5c74f589f4867dbd57e9ca9f808'),
-(2, 'Mayer András', 266248, 2, '47bce5c74f589f4867dbd57e9ca9f808');
+(2, 'Mayer András', 266248, 2, '47bce5c74f589f4867dbd57e9ca9f808'),
+(3, 'sample Tim', 222222, 2, '47bce5c74f589f4867dbd57e9ca9f808');
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_job_titles`
