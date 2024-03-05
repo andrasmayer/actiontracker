@@ -12,7 +12,7 @@ const docHeader = (data, userID)=>{
 
 
     return `
-        <div class="cardt">
+        <div class="card">
             <div class="containert">
                 <div class="docHeader">
                     <div>ID: ${data.id} </div>

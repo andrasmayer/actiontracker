@@ -10,7 +10,7 @@ export const NavBar = () => {
     let context = ""
     Object.keys(views).forEach((key)=>{
         const activeWindow = key == $_GET.view ? "active" : ""
-        if( (views[key].login == false || (views[key].login == true && userID != null) ) &&  views[key].hidden == true) {
+        if( (views[key].login == false || (views[key].login == true && userID != null) ) &&  views[key].hidden != true) {
             context += `<a class="${activeWindow}" href="?view=${key}">${views[key].title}</a>`
         }
     })
