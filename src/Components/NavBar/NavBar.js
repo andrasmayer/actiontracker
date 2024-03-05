@@ -1,4 +1,3 @@
-//const {views} = await import(`../Router/views.js${app_version}`)
 const {views} = await import(`../Router/views.js${app_version}`)
 const {$_GET} = await import(`../../Hooks/findGET/findGET.js${app_version}`)
 const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
@@ -11,11 +10,9 @@ export const NavBar = () => {
     let context = ""
     Object.keys(views).forEach((key)=>{
         const activeWindow = key == $_GET.view ? "active" : ""
-        if(views[key].login == false || (views[key].login == true && userID != null) ) {
+        if( (views[key].login == false || (views[key].login == true && userID != null) ) &&  views[key].title != null) {
             context += `<a class="${activeWindow}" href="?view=${key}">${views[key].title}</a>`
         }
-
-        //console.log(`view: ${views[key].login} userID: ${userID != null}`)
     })
 
     const viewContext =  views[activeView].fnc({userID:userID})
