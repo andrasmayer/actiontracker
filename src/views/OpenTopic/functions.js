@@ -1,4 +1,4 @@
-const {Topic} = await import(`./Topic.js${app_version}`)
+const {Topic} = await import(`../../Components/Topic/Topic.js${app_version}`)
 const {adminView, responsibleView,delegatedView, guestView} = await import(`./roleview.js${app_version}`)
 
 const docHeader = (data, userID)=>{

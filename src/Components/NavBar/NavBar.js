@@ -4,7 +4,8 @@ const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
 export const NavBar = () => {
     const root = document.getElementById("root")
     const userID = ajax("get", "./server/activeUser/activeUser.php", "json");
-    const activeView = $_GET.view == null ? "Home" : $_GET.view
+    const activeView = $_GET.view == null ? "home" : $_GET.view
+
     document.title = views[activeView].title
 
     let context = ""

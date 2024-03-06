@@ -21,5 +21,14 @@
         $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute([$_GET["topicid"]]);  
         $topic["task"] = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        $topic["contributorNames"] = [];
+
+        forEach($topic["contributors"] as $userID){
+            $sql = "select username from users where dolszam = ?";
+            $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+            $sth->execute([$userID]);  
+
+            $topic["contributorNames"][] =  ["username"=>$sth->fetch(\PDO::FETCH_COLUMN,0), "userID"=>$userID];
+        }
     }
 echo json_encode($topic);
