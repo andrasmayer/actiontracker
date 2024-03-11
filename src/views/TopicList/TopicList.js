@@ -1,30 +1,13 @@
 const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
+const {list} = await import(`./Components/list.js${app_version}`)
+const {events} = await import(`./Components/events.js${app_version}`)
 export const TopicList = (props) =>{
+    
 
-    const OBJ = props.myTopics === true ? {userID:props.userID} : {}
+    const context = {DOM:list(props), events: events}
+    //const context = {DOM:list(props), events: ()=>{}}
 
-    let context = ""
-       
-    const list = ajax("get", "server/getTopic/TopicList.php", "json",OBJ)
-    console.log(list)
-    list.forEach((itm) => {
-        const owner = props.userID == itm.creator ? `<i class="fa fa-user" style="color:blue"></i>` : ""
-        context += `
-        
-        <div class="card">   
-            <div class="container">
-                <a class="list-item" href="?view=OpenTopic&topicid=${itm.id}">
-                    ${itm.id} 
-                    <strong>${itm.title}</strong>
-                    ${itm.creationDate} ${owner}
-                </a>
-            </div>
-        </div>
-        `
-    })
-
-    return `<div>
-                <div>TopicList</div>
-                <div>${context}</div>
-            </div>`
+    
+    //context.DOM = content        
+    return context
 }
