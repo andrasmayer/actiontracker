@@ -6,8 +6,6 @@ export const adminView = (itm, Topic, key) => {
         addin += `<td><textarea class="addin_${key2}">${itm.addin[key2]}</textarea></td>`
     })
 
-    console.log(itm)
-
     return `
     <tr class="active-row" rowid="${itm.id}" rowindex="${key}">
         <td>${itm.id}</td>
@@ -19,6 +17,7 @@ export const adminView = (itm, Topic, key) => {
         <td>${DropDowns({element:Topic.status_1, className:"status_1", selected:itm.status_1})}</td>
         <td>${Topic.status_1[itm.status_2]}</td>
         <td><textarea class="comment">${itm.comment}</textarea></td>
+        <td><textarea class="action">${itm.action}</textarea></td>
         ${addin}
     </tr>
     `
@@ -42,6 +41,7 @@ export const responsibleView = (itm, Topic, key) => {
         <td>${Topic.status_1[itm.status_1]}</td>
         <td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>
         <td><textarea class="comment">${itm.comment}</textarea></td>
+        <td><textarea class="action">${itm.action}</textarea></td>
         ${addin}
     </tr>
     `
@@ -64,6 +64,7 @@ export const delegatedView = (itm, Topic, key) => {
         <td>${Topic.status_1[itm.status_1]}</td>
         <td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>
         <td><textarea class="comment">${itm.comment}</textarea></td>
+        <td><textarea class="action">${itm.action}</textarea></td>
         ${addin}
     </tr>
     `
@@ -87,6 +88,7 @@ export const guestView = (itm, Topic) => {
         <td>${Topic.status_1[itm.status_1]}</td>
         <td>${Topic.status_1[itm.status_2]}</td>
         <td>${itm.comment}</td>
+        <td>${itm.action}</td>
         ${addin}
     </tr>
     `

@@ -42,15 +42,18 @@ export const events = (Topic) =>{
 
     newTask != null &&
     newTask.addEventListener("click", (event)=>{
-        let task = { erTypes:0, responsible: "", status_1:0, status_2:0, comment:"", creationDate:today() , expireDate:"0000-00-00", addin:{} }
+        let task = { erTypes:0, responsible: "", status_1:0, status_2:0, comment:"", action : "", creationDate:today() ,
+         expireDate:"0000-00-00", addin:{} }
 
         Object.keys(Topic.privateHeaders).forEach((key)=>{
             task.addin[key] = ""
         })
         const newTaskId = ajax("post", "./server/editTopic/newTask.php", "json", {task:task,topicid:Topic.id})
-        task.id = newTaskId
-        Topic.task.push(task)
-        location.reload()
+        console.log(newTaskId)
+        console.log(Topic)
+        //task.id = newTaskId
+        //Topic.task.push(task)
+        //location.reload()
     })
 
     inputSelects.forEach((itm)=>{

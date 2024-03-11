@@ -12,9 +12,15 @@ if(Topic != false && typeof Topic != "undefined"){
         if( itm.responsibleName == null){ Topic.task[key].responsibleName = "" } 
         if( itm.delegatedName == null){ Topic.task[key].delegatedName = "" } 
     })    
-
+    
+    Topic.contributors.forEach((itm,key)=>{
+        Topic.contributors[key] = parseInt(Topic.contributors[key])
+    })
+    
 }
+
 export {Topic}
+
 
 
 

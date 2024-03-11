@@ -77,7 +77,8 @@ export const createTable = (userID)=>{
                         <th>Határidő</th>
                         <th>Ellenőrizve</th>
                         <th>Állapot</th>
-                        <th>Komment </th>
+                        <th>Komment</th>
+                        <th>Akció</th>
                         ${createHeader(Topic.privateHeaders)}
                     </tr>
                 </thead>

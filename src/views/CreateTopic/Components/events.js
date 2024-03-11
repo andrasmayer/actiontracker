@@ -14,7 +14,12 @@ export const events = (importedTopic) => {
   }
   
   //Topic export from EditTopic.js
-  console.log(Topic)
+
+  if(Topic.contributors.length > 1 &&   Topic.contributors[0] == Topic.contributors[1]){
+     Topic.contributors.splice(0,1) 
+  }
+
+  console.log(Topic.contributors)
   const topicName = document.getElementById("topicName")
   const topicDescription = document.getElementById("topicDescription")
 
@@ -134,9 +139,10 @@ export const events = (importedTopic) => {
   //Létrehozás
   const createTopic = document.getElementById("createTopic")
   createTopic.addEventListener("click", () => {
-    const res = ajax("post",`./server/${Topic.URL}`,"json",Topic)
-    console.log(Topic.URL)
-    console.log(res)
+    //const res = ajax("post",`./server/${Topic.URL}`,"json",Topic)
+    //console.log(Topic.URL)
+    //console.log(res)
+    console.log(Topic.contributors)
     //alert("Topic létrehozva")
     //location.href = `?view=editTopic&topicid=${res}`
   })

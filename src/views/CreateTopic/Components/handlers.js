@@ -52,6 +52,11 @@ export const buildAdmins = (obj) => {
       itm.addEventListener("click", (e) => {
         const key = e.target.getAttribute("catkey")
         Topic.contributorNames.splice(key, 1)
+        Topic.contributors.splice(key, 1)
+
+        console.log(Topic.contributors)
+
+
         buildAdmins(Topic.contributorNames)
       })
     })
@@ -66,12 +71,13 @@ export const buildHeaders = (obj) => {
   const headerList = document.getElementById("headerList")
   let context = ``
   Object.keys(obj).forEach((key) => {
-    if (key > 0) {
+   
       context += `<li>${obj[key]} <button catkey="${key}" class="removeHeader">-</button></li>`
-    }
+    
   })
   if (headerList != null) {
     headerList.innerHTML = context
+  
     document.querySelectorAll(".removeHeader").forEach((itm) => {
         itm.addEventListener("click", (e) => {
           const key = e.target.getAttribute("catkey")
