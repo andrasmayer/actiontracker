@@ -4,6 +4,7 @@ const {$_GET} = await import(`../../Hooks/findGET/findGET.js${app_version}`)
 const Topic = ajax("get", "./server/getTopic/getTopic.php", "json", {topicid:$_GET.topicid})
 if(Topic != false && typeof Topic != "undefined"){
     Topic.privateHeaders = JSON.parse(Topic.privateHeaders)
+    Topic.headerEditor = JSON.parse(Topic.headerEditor)
     Topic.erTypes = JSON.parse(Topic.erTypes)
     Topic.status_1 = ["open", "overdue", "closed"]
     Topic.status_2 = ["open", "closed"]

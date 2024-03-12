@@ -53,7 +53,7 @@ export const events = (Topic) =>{
         console.log(Topic)
         //task.id = newTaskId
         //Topic.task.push(task)
-        //location.reload()
+        location.reload()
     })
 
     inputSelects.forEach((itm)=>{

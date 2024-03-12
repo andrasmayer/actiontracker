@@ -3,10 +3,14 @@ export let Topic = {
   description: "",
   contributorNames: [],
   contributors: [],
-  erTypes: { 0: "Kérlek válassz" },
+  erTypes: { "v": "Kérlek válassz" },
   privateHeaders: {},
-  saveType:"create"
+  saveType:"create",
+  headerEditor:{}
 }
+
+
+//alert("Ertypes nem jó a 0 kulcs miatt")
 
 let requet
 export const importTopic = (obj)=>{ //Külső forrás EditTopics.js
@@ -19,7 +23,7 @@ export const buildCategories = (obj) => {
   const categories = document.getElementById("categories")
   let context = ``
   Object.keys(obj).forEach((key) => {
-    if (key != 0) {
+    if (key != "v") {
       context += `<li>${obj[key]} <button catkey="${key}" class="removeCategory" >-</button></li>`
     }
   })

@@ -1,7 +1,8 @@
 <?php
 include("../db/pdo_connect.php");
 
-if( !isset($_POST["privateHeaders"]) ){ $_POST["privateHeaders"] = []; }
+if( !isset($_POST["privateHeaders"]) ){ $_POST["privateHeaders"] = "{}"; }
+else{ $_POST["privateHeaders"] =  json_encode($_POST["privateHeaders"]); }
 
 session_start();
 $sql = "INSERT INTO `topics`( `title`, `description`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`) 
@@ -15,7 +16,7 @@ $stmt->execute([
    date("Y-m-d H:i:s"),
    json_encode($_POST["contributors"]),
    json_encode($_POST["erTypes"]),
-   json_encode($_POST["privateHeaders"])
+   $_POST["privateHeaders"]
 
 ]);
 

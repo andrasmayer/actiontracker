@@ -1,22 +1,21 @@
 let { Topic, buildCategories, buildAdmins, buildHeaders } = await import(`./handlers.js${app_version}`)
 const { FindUser } = await import(`../../../Components/Users/FindUser/FindUser.js${app_version}`)
-const {ajax} = await import(`../../../Hooks/ajax/ajax.js${app_version}`)
-const {$_GET} = await import(`../../../Hooks/findGET/findGET.js${app_version}`)
-
+const { ajax } = await import(`../../../Hooks/ajax/ajax.js${app_version}`)
+import sortable from "../../../../vendor/html5sortable-master/dist/html5sortable.es.js"
 
 export const events = (importedTopic) => {
-  if(importedTopic != null){
+  if (importedTopic != null) {
     Topic = importedTopic
     Topic.URL = `EditTopicBase/EditTopicBase.php`
-  }
-  else{
+  } else {
     Topic.URL = `CreateTopic/CreateTopic.php`
   }
-  
-  //Topic export from EditTopic.js
 
-  if(Topic.contributors.length > 1 &&   Topic.contributors[0] == Topic.contributors[1]){
-     Topic.contributors.splice(0,1) 
+  if (
+    Topic.contributors.length > 1 &&
+    Topic.contributors[0] == Topic.contributors[1]
+  ) {
+    Topic.contributors.splice(0, 1)
   }
 
   const topicName = document.getElementById("topicName")
@@ -36,16 +35,13 @@ export const events = (importedTopic) => {
   addCat.addEventListener("click", () => {
     if (newCatName.value.length < 4) {
       alert("Kategória minimum 5 karakter!")
-    }
-    else {
-
-      if(Topic.erTypes[newCatName.value] == null){
+    } else {
+      if (Topic.erTypes[newCatName.value] == null) {
         Topic.erTypes[newCatName.value] = newCatName.value
-        console.log(Topic.erTypes)
         buildCategories(Topic.erTypes)
+      } else {
+        alert("Ez a kategória már foglalt")
       }
-      else{  alert("Ez a kategória már foglalt") }
-
     }
   })
 
@@ -105,21 +101,51 @@ export const events = (importedTopic) => {
   addHeader.addEventListener("click", () => {
     if (newHeader.value.length < 3) {
       alert("Fejléc minimum 3 karakter!")
-    }
-    else {
-      if(Topic.privateHeaders[newHeader.value] == null){
-        Topic.privateHeaders[newHeader.value] = newHeader.value
+    } else {
+      if (Topic.privateHeaders[newHeader.value] == null) {
+        Topic.privateHeaders[newHeader.value.split(" ").join("_") ] = newHeader.value
         buildHeaders(Topic.privateHeaders)
+      } else {
+        alert("Ez a fejléc már foglalt")
       }
-      else{  alert("Ez a fejléc már foglalt") }
     }
   })
 
   //Létrehozás
   const createTopic = document.getElementById("createTopic")
   createTopic.addEventListener("click", () => {
-    const res = ajax("post",`./server/${Topic.URL}`,"html",Topic)
-    if(Topic.URL == `CreateTopic/CreateTopic.php`){  location.href = `?view=editTopic&topicid=${res}` }
-    else{ alert("Adatok módosítva") }
+    const res = ajax("post", `./server/${Topic.URL}`, "html", Topic)
+  
+    if (Topic.URL == `CreateTopic/CreateTopic.php`) {
+      location.href = `?view=editTopic&topicid=${res}`
+    } else {
+     alert("Adatok módosítva")
+    }
   })
+
+  //Header status
+  const headerEditor = document.querySelectorAll(".headerEditor")
+  if(  headerEditor.length > 0){
+    const headerStatus = document.querySelectorAll(".headerStatus")
+    headerStatus.forEach(itm=>{
+      itm.addEventListener("change",(e)=>{
+      const id = e.target.getAttribute("headerid") 
+      Topic.headerEditor[id].visible = JSON.stringify(e.target.checked) 
+      const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
+      })
+    })
+
+    sortable('.headerEditor');
+    sortable('.headerEditor')[0].addEventListener('sortupdate', function(e) {
+      let id = 0
+      const tempList = []
+      headerEditor[0].querySelectorAll(".editHeader").forEach(itm=>{
+
+        tempList.push( {data:itm.getAttribute("data"),visible:itm.getAttribute("visible")})
+        id++
+      })
+      Topic.headerEditor = tempList
+      const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
+    })
+  }
 }

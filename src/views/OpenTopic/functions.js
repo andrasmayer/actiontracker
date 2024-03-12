@@ -60,9 +60,12 @@ export const buildFeed = (tasks, userID) =>{
     return context
 }
 
-
 export const createTable = (userID)=>{
-
+    let thead = "";
+    Topic.headerEditor.forEach((itm,key)=>{
+        thead += itm.visible == "true" ? `<th>${itm.data}</th>` : ""
+    })
+    
     return `
         <div>
             ${docHeader(Topic, userID)}
@@ -70,16 +73,8 @@ export const createTable = (userID)=>{
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Kategória</th>
-                        <th>Felelős</th>
-                        <th>Delegált</th>
-                        <th>Felvéve</th>
-                        <th>Határidő</th>
-                        <th>Ellenőrizve</th>
-                        <th>Állapot</th>
-                        <th>Komment</th>
-                        <th>Akció</th>
-                        ${createHeader(Topic.privateHeaders)}
+                       
+                        ${thead}
                     </tr>
                 </thead>
                 <tbody>${buildFeed(Topic.task, userID)}</tbody>
