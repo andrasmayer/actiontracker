@@ -19,7 +19,6 @@ export const events = (importedTopic) => {
      Topic.contributors.splice(0,1) 
   }
 
-  console.log(Topic.contributors)
   const topicName = document.getElementById("topicName")
   const topicDescription = document.getElementById("topicDescription")
 
@@ -37,22 +36,16 @@ export const events = (importedTopic) => {
   addCat.addEventListener("click", () => {
     if (newCatName.value.length < 4) {
       alert("Kategória minimum 5 karakter!")
-    } else {
-      let error = false
-      let lastKey = parseInt(
-        Object.keys(Topic.erTypes)[Object.keys(Topic.erTypes).length - 1]
-      )
-      Object.keys(Topic.erTypes).forEach((key) => {
-        if (Topic.erTypes[key].title == newCatName.value) {
-          error = true
-        }
-      })
-      if (error == false) {
-        Topic.erTypes[lastKey + 1] = { title: newCatName.value }
+    }
+    else {
+
+      if(Topic.erTypes[newCatName.value] == null){
+        Topic.erTypes[newCatName.value] = newCatName.value
+        console.log(Topic.erTypes)
         buildCategories(Topic.erTypes)
-      } else {
-        alert("A kategória már a listában van")
       }
+      else{  alert("Ez a kategória már foglalt") }
+
     }
   })
 
@@ -112,38 +105,21 @@ export const events = (importedTopic) => {
   addHeader.addEventListener("click", () => {
     if (newHeader.value.length < 3) {
       alert("Fejléc minimum 3 karakter!")
-    } else {
-      let error = false
-      let lastKey =
-        Object.keys(Topic.privateHeaders).length > 0
-          ? parseInt(
-              Object.keys(Topic.privateHeaders)[
-                Object.keys(Topic.privateHeaders).length - 1
-              ]
-            )
-          : 0
-      Object.keys(Topic.privateHeaders).forEach((key) => {
-        if (Topic.privateHeaders[key] == newHeader.value) {
-          error = true
-        }
-      })
-      if (error == false) {
-        Topic.privateHeaders[lastKey + 1] = newHeader.value
+    }
+    else {
+      if(Topic.privateHeaders[newHeader.value] == null){
+        Topic.privateHeaders[newHeader.value] = newHeader.value
         buildHeaders(Topic.privateHeaders)
-      } else {
-        alert("A fejléc már a listában van")
       }
+      else{  alert("Ez a fejléc már foglalt") }
     }
   })
 
   //Létrehozás
   const createTopic = document.getElementById("createTopic")
   createTopic.addEventListener("click", () => {
-    //const res = ajax("post",`./server/${Topic.URL}`,"json",Topic)
-    //console.log(Topic.URL)
-    //console.log(res)
-    console.log(Topic.contributors)
-    //alert("Topic létrehozva")
-    //location.href = `?view=editTopic&topicid=${res}`
+    const res = ajax("post",`./server/${Topic.URL}`,"html",Topic)
+    if(Topic.URL == `CreateTopic/CreateTopic.php`){  location.href = `?view=editTopic&topicid=${res}` }
+    else{ alert("Adatok módosítva") }
   })
 }

@@ -1,11 +1,12 @@
 <?php
 include("../db/pdo_connect.php");
 
-//echo json_encode($_POST);
+if( !isset($_POST["privateHeaders"]) ){ $_POST["privateHeaders"] = []; }
+
 session_start();
 $sql = "INSERT INTO `topics`( `title`, `description`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`) 
 VALUES (?,?,?,?,?,?,?)";
-/*
+
 $stmt= $con->prepare($sql);
 $stmt->execute([
    $_POST["title"],
@@ -17,7 +18,7 @@ $stmt->execute([
    json_encode($_POST["privateHeaders"])
 
 ]);
-*/
+
 
 $sql = "select max(id) from topics";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));

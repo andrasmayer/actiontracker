@@ -1,6 +1,9 @@
 <?php
 include("../db/pdo_connect.php");
 
+if( !isset($_POST["privateHeaders"]) ){ $_POST["privateHeaders"] = []; }
+
+
 $sql = "update topics set title = ?, description = ?, contributors = ?, erTypes = ?, privateHeaders = ? where id = ?";
 
 $stmt= $con->prepare($sql);

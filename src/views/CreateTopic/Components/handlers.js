@@ -3,7 +3,7 @@ export let Topic = {
   description: "",
   contributorNames: [],
   contributors: [],
-  erTypes: { 0: { title: "Kérlek válassz" } },
+  erTypes: { 0: "Kérlek válassz" },
   privateHeaders: {},
   saveType:"create"
 }
@@ -19,8 +19,8 @@ export const buildCategories = (obj) => {
   const categories = document.getElementById("categories")
   let context = ``
   Object.keys(obj).forEach((key) => {
-    if (key > 0) {
-      context += `<li>${obj[key].title} <button catkey="${key}" class="removeCategory" >-</button></li>`
+    if (key != 0) {
+      context += `<li>${obj[key]} <button catkey="${key}" class="removeCategory" >-</button></li>`
     }
   })
 
@@ -36,7 +36,6 @@ export const buildCategories = (obj) => {
   } else {
     return ""
   }
-  //else{return context}
 }
 
 export const buildAdmins = (obj) => {
