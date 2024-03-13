@@ -17,6 +17,8 @@ if(Topic != false && typeof Topic != "undefined"){
     Topic.contributors.forEach((itm,key)=>{
         Topic.contributors[key] = parseInt(Topic.contributors[key])
     })
+    if(typeof Topic.privateHeaders == "string"){ Topic.privateHeaders = {} }
+
 }
 
 export {Topic}

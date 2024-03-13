@@ -43,7 +43,6 @@ export const buildFeed = (tasks, userID) =>{
     let isResponsible = false
     let isDelegated = false
     let context = ``
-
     tasks.forEach((itm,key)=>{
         //isResponsible = itm.responsible == userID || userID == itm.delegated
         isResponsible = itm.responsible == userID 

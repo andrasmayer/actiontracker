@@ -21,8 +21,7 @@ const fire = (event, keyCode, Topic) =>{
             OBJ.column  = "addin";
             OBJ.value   = JSON.stringify(Topic.task[rowIndex].addin);
         }
-
-        ajax("post", "./server/editTopic/editTask.php", "json", OBJ)
+        const editor = ajax("post", "./server/editTopic/editTask.php", "json", OBJ)
     }
 
 }
@@ -49,10 +48,6 @@ export const events = (Topic) =>{
             task.addin[key] = ""
         })
         const newTaskId = ajax("post", "./server/editTopic/newTask.php", "json", {task:task,topicid:Topic.id})
-        console.log(newTaskId)
-        console.log(Topic)
-        //task.id = newTaskId
-        //Topic.task.push(task)
         location.reload()
     })
 

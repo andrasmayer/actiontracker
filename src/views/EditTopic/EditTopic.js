@@ -13,28 +13,25 @@ export const EditTopic = (props) =>{
     props.Topic = Topic
     const imported = CreateTopic(props)
 
-let context = {}
-context.DOM = imported.DOM
-context.events = ()=>{
-    
-    const topicName = document.getElementById("topicName")
-    topicName.value = Topic.title
-    //topicName.setAttribute("disabled",true)//Törölhető valszeg    
+    let context = {}
+    context.DOM = imported.DOM
+    context.events = ()=>{
+        
+        const topicName = document.getElementById("topicName")
+        topicName.value = Topic.title
 
-    const topicDescription = document.getElementById("topicDescription")
-    topicDescription.value = Topic.description
-   // topicDescription.setAttribute("disabled",true)//Törölhető valszeg
+        const topicDescription = document.getElementById("topicDescription")
+        topicDescription.value = Topic.description
 
-    const createTopicCtn = document.querySelector(".createTopicCtn")
-    //createTopicCtn.innerHTML = "<button>Módosítás</button>"
-    imported.events(Topic)
-    importTopic(Topic)
-    createTopic.textContent = "Adatlap módosítása"
+        const createTopicCtn = document.querySelector(".createTopicCtn")
+        imported.events(Topic)
+        importTopic(Topic)
+        createTopic.textContent = "Adatlap módosítása"
 
-    buildCategories(Topic.erTypes)
-    buildAdmins(Topic.contributorNames)
-    buildHeaders(Topic.privateHeaders)
-}
+        buildCategories(Topic.erTypes)
+        buildAdmins(Topic.contributorNames)
+        buildHeaders(Topic.privateHeaders)
+    }
 
 
     return context

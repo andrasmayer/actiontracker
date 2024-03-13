@@ -103,7 +103,7 @@ export const events = (importedTopic) => {
       alert("Fejléc minimum 3 karakter!")
     } else {
       if (Topic.privateHeaders[newHeader.value] == null) {
-        Topic.privateHeaders[newHeader.value.split(" ").join("_") ] = newHeader.value
+        Topic.privateHeaders[newHeader.value.split(" ").join("$$") ] = newHeader.value
         buildHeaders(Topic.privateHeaders)
       } else {
         alert("Ez a fejléc már foglalt")
@@ -115,12 +115,15 @@ export const events = (importedTopic) => {
   const createTopic = document.getElementById("createTopic")
   createTopic.addEventListener("click", () => {
     const res = ajax("post", `./server/${Topic.URL}`, "html", Topic)
-  
+
+
     if (Topic.URL == `CreateTopic/CreateTopic.php`) {
       location.href = `?view=editTopic&topicid=${res}`
     } else {
-     alert("Adatok módosítva")
+      alert("Adatok módosítva")
+      location.reload()
     }
+
   })
 
   //Header status
@@ -129,7 +132,8 @@ export const events = (importedTopic) => {
     const headerStatus = document.querySelectorAll(".headerStatus")
     headerStatus.forEach(itm=>{
       itm.addEventListener("change",(e)=>{
-      const id = e.target.getAttribute("headerid") 
+      const id = e.target.parentNode.getAttribute("headerid") 
+      console.log(Topic.headerEditor[id])
       Topic.headerEditor[id].visible = JSON.stringify(e.target.checked) 
       const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
       })
@@ -138,10 +142,11 @@ export const events = (importedTopic) => {
     sortable('.headerEditor');
     sortable('.headerEditor')[0].addEventListener('sortupdate', function(e) {
       let id = 0
+
       const tempList = []
       headerEditor[0].querySelectorAll(".editHeader").forEach(itm=>{
-
-        tempList.push( {data:itm.getAttribute("data"),visible:itm.getAttribute("visible")})
+        const resource = Topic.headerEditor[itm.getAttribute("headerid")]
+        tempList.push(resource)
         id++
       })
       Topic.headerEditor = tempList
