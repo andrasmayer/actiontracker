@@ -10,9 +10,10 @@ const {EditTopic} = await import(`../../views/EditTopic/EditTopic.js${app_versio
 export const views = {
     home:{title:"Főoldal", fnc:Home, login:false},
     OpenTopic:{title:"Topic", fnc:OpenTopic, login:false,hidden:true},
-    MyTasks:{title:"Feladataim", fnc:MyTasks, login:true},
     CreateTopic:{title:"Topic létrehozása", fnc:CreateTopic, login:true},
-    TopicList:{title:"Lista", fnc:TopicList, login:false},
+
+    MyTasks:{title:"Feladataim", fnc:MyTasks, login:true},
+    TopicList:{title:"Topic Lista", fnc:TopicList, login:false},
    // MyTopics:{title:"Saját Lista", fnc:MyTopics, login:true},
     editTopic:{title:"Topic szerkesztése", fnc:EditTopic, login:false,hidden:true},
 

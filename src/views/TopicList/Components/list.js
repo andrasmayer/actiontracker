@@ -6,7 +6,7 @@ export const list = (props) => {
 
   let content = ""
 
-  const list = ajax("get", "server/getTopic/TopicList.php", "json", OBJ)
+  const list = ajax("get", "./server/getTopic/TopicList.php", "json", OBJ)
   list.forEach((itm) => {
     itm.contributors = JSON.parse(itm.contributors)
   
