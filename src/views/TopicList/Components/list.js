@@ -10,8 +10,6 @@ export const list = (props) => {
   list.forEach((itm) => {
     itm.contributors = JSON.parse(itm.contributors)
   
-    console.log(itm.contributors.includes(JSON.stringify(props.userID)))
-
     const owner =    itm.contributors.includes(JSON.stringify(props.userID) ) === true || props.userID == itm.creator
         ? `
         <div style="float:right">
