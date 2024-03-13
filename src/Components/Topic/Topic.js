@@ -17,7 +17,6 @@ if(Topic != false && typeof Topic != "undefined"){
     Topic.contributors.forEach((itm,key)=>{
         Topic.contributors[key] = parseInt(Topic.contributors[key])
     })
-    
 }
 
 export {Topic}

@@ -8,9 +8,17 @@ export const list = (props) => {
 
   const list = ajax("get", "server/getTopic/TopicList.php", "json", OBJ)
   list.forEach((itm) => {
-    const owner =
-      props.userID == itm.creator
-        ? `<i class="fa fa-user" style="color:blue"></i>`
+    itm.contributors = JSON.parse(itm.contributors)
+  
+    console.log(itm.contributors.includes(JSON.stringify(props.userID)))
+
+    const owner =    itm.contributors.includes(JSON.stringify(props.userID) ) === true || props.userID == itm.creator
+        ? `
+        <div style="float:right">
+          <i class="fa fa-user" style="color:blue"></i>
+          <a class="fa fa-pencil" style="color:green" href="?view=editTopic&topicid=${itm.id}"></a>
+        </div>
+        `
         : ""
     content += `
         
