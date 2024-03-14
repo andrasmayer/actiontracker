@@ -1,8 +1,10 @@
 const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`)
 
 export const adminView = (itm, Topic, key) => {
+    
     let thead = "";
     Topic.headerEditor.forEach((itm2,key)=>{
+
         if(itm2.visible == "true"){
             switch(itm2.className){
                 case "erTypes" : thead += `<td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>`;break;
@@ -14,7 +16,7 @@ export const adminView = (itm, Topic, key) => {
                 case "status_2" : thead += `<td>${Topic.status_1[itm.status_2]}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.data}">${itm.addin[itm2.data]}</textarea></td>`;
+                default: thead += `<td><textarea class="addin_${itm2.className}">${itm.addin[itm2.className]}</textarea></td>`;
                 break;
             }
         }
