@@ -26,7 +26,7 @@ foreach( $headers as $row){
 $incomming = array_diff($h_keys_2, $h_keys_1);
 if( count($incomming) > 0 ){
    foreach($incomming  as $key){
-      $editor[count($editor)-1] = ["data"=>str_replace("$$"," ",$key),"className"=>$key,"visible"=>"true","private"=>"true"];
+      $editor[] = ["data"=>str_replace("$$"," ",$key),"className"=>$key,"visible"=>"true","private"=>"true"];
    }
    $sql = "update topics set headerEditor = ? where id = ?";
    $sth= $con->prepare($sql);
@@ -34,14 +34,18 @@ if( count($incomming) > 0 ){
 }
 
 //Kimenő törlése
+$temp = [];
 $outgoing = array_diff($h_keys_1, $h_keys_2);
-if( count($outgoing) < 0){
+if( count($outgoing) > 0){
     foreach($editor  as $key=>$e){
         if( in_array($e["className"], $outgoing) == true){
             unset($editor[$key]);
         }
+        else{
+            $temp[] = $editor[$key];
+        }
+    }
         $sql = "update topics set headerEditor = ? where id = ?";
         $sth= $con->prepare($sql);
-        $sth->execute([ json_encode($editor),$_POST["id"] ]);
-    }
+        $sth->execute([ json_encode($temp),$_POST["id"] ]);
 }

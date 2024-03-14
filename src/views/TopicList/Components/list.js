@@ -13,7 +13,6 @@ export const list = (props) => {
     const owner =    itm.contributors.includes(JSON.stringify(props.userID) ) === true || props.userID == itm.creator
         ? `
         <div style="float:right">
-          <i class="fa fa-user" style="color:blue"></i>
           <a class="fa fa-pencil" style="color:green" href="?view=editTopic&topicid=${itm.id}"></a>
         </div>
         `
