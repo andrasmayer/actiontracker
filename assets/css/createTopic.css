@@ -1,0 +1,27 @@
+.newTopicCtn{
+    border:1px solid black;
+    width:600px;
+    margin:0 auto;
+    padding:1rem;
+}
+
+
+.newTopicCtn li{
+    list-style-type: none;
+}
+
+.newTopicCtn .row{
+    padding: 1rem;
+}
+
+.center{
+    text-align:center;
+}
+
+.w-100{
+    width:100%;
+}
+
+.newTopicCtn .row textarea{
+    height:100px;
+}

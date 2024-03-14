@@ -1,6 +1,7 @@
 <?php
-//session_destroy();
+
 session_start();
+//session_destroy();
 include("../db/pdo_connect.php");
 $sql = "select dolszam  FROM users where dolszam = ? and passWord = ?";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
