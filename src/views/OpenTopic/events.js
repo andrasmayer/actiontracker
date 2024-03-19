@@ -1,12 +1,15 @@
 ﻿const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
+const {FindUser} = await import(`../../Components/Users/FindUser/FindUser.js${app_version}`)
 
 const fire = (event, keyCode, Topic) =>{
     if(keyCode == null || keyCode == 13){
+        
         const target = event.target
         const rowIndex= event.target.parentNode.parentNode.getAttribute("rowindex")
         const rowID = event.target.parentNode.parentNode.getAttribute("rowid")
         const OBJ = {topicid:Topic.id, rowid:rowID, column:target.classList[0], value:target.value}
         const prefix = OBJ.column.split("addin_")
+
         if( prefix.length == 1){
             Topic.task[rowIndex][OBJ.column] = OBJ.value
         }
@@ -18,9 +21,10 @@ const fire = (event, keyCode, Topic) =>{
             OBJ.column  = "addin";
             OBJ.value   = JSON.stringify(Topic.task[rowIndex].addin);
         }
-        
-        ajax("post", "./server/editTopic/editTask.php", "json", OBJ)
+        //console.log(OBJ)
+        const editor = ajax("post", "./server/editTopic/editTask.php", "json", OBJ)
     }
+
 }
 
 const today = ()=>{
@@ -34,18 +38,18 @@ export const events = (Topic) =>{
     const inputTextAreas = document.querySelectorAll("textarea")
     const inputSelects = document.querySelectorAll("select")
     const newTask = document.getElementById("newTask")
+    const responsible = document.querySelectorAll(".responsible")
 
+    newTask != null &&
     newTask.addEventListener("click", (event)=>{
-        let task = { erTypes:0, responsible: "", status_1:0, status_2:0, comment:"", creationDate:today() , expireDate:"0000-00-00", addin:{} }
+        let task = { erTypes:0, responsible: "", status_1:0, status_2:0, comment:"", action : "", creationDate:today() ,
+         expireDate:"0000-00-00", addin:{} }
 
         Object.keys(Topic.privateHeaders).forEach((key)=>{
             task.addin[key] = ""
         })
         const newTaskId = ajax("post", "./server/editTopic/newTask.php", "json", {task:task,topicid:Topic.id})
-        task.id = newTaskId
-        Topic.task.push(task)
         location.reload()
-       // App(events) //Reload ment helyette
     })
 
     inputSelects.forEach((itm)=>{
@@ -62,7 +66,26 @@ export const events = (Topic) =>{
 
     inputFields.forEach((itm)=>{
         itm.addEventListener("keydown", (event)=>{
-            fire(event, event.keyCode, Topic)
+            if(
+                itm.classList.contains("responsible") == false && 
+                itm.classList.contains("delegated") == false 
+            
+            ){ fire(event, event.keyCode, Topic)    }
+            else{
+                const hasSelect = itm.parentNode.querySelector("select")
+                hasSelect != null && hasSelect.remove()
+                itm.parentNode.insertAdjacentHTML('beforeend', FindUser(event.target.value, itm.classList[0]) )
+                itm.parentNode.querySelector("select").addEventListener("change",(event_2)=>{
+                
+                    let selectedOption = null
+                    event_2.target.querySelectorAll("option").forEach(opt=>{
+                        if(opt.value == event_2.target.value){ selectedOption = opt.textContent.split("(")[0] }
+                    })
+                    itm.value = event_2.target.value
+                    fire(event, 13, Topic)
+                    itm.value = selectedOption
+                })
+            }
         })
     })
 

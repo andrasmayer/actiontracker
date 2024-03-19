@@ -1,5 +1,5 @@
-const {Topic} = await import(`./Topic.js${app_version}`)
-const {adminView, responsibleView, guestView} = await import(`./roleview.js${app_version}`)
+const {Topic} = await import(`../../Components/Topic/Topic.js${app_version}`)
+const {adminView, responsibleView,delegatedView, guestView} = await import(`./roleview.js${app_version}`)
 
 const docHeader = (data, userID)=>{
     let context = ""
@@ -12,7 +12,7 @@ const docHeader = (data, userID)=>{
 
 
     return `
-        <div class="cardt">
+        <div class="card">
             <div class="containert">
                 <div class="docHeader">
                     <div>ID: ${data.id} </div>
@@ -41,20 +41,30 @@ export const createHeader = (header)=>{
 export const buildFeed = (tasks, userID) =>{
     const isAdmin = Topic.contributors.includes(userID)
     let isResponsible = false
+    let isDelegated = false
     let context = ``
-
     tasks.forEach((itm,key)=>{
-        isResponsible = itm.responsible == userID
+        //isResponsible = itm.responsible == userID || userID == itm.delegated
+        isResponsible = itm.responsible == userID 
+        isDelegated = itm.responsible == userID || userID == itm.delegated
+
+
+
+        //delegatedView
         if(isAdmin === true){ context += adminView(itm, Topic, key) }
         else if(isResponsible === true){ context += responsibleView(itm, Topic, key) }
+        else if(isDelegated === true){ context += delegatedView(itm, Topic, key) }
         else{ context += guestView(itm, Topic) }
     })
     return context
 }
 
-
 export const createTable = (userID)=>{
-
+    let thead = "";
+    Topic.headerEditor.forEach((itm,key)=>{
+        thead += itm.visible == "true" ? `<th>${itm.data}</th>` : ""
+    })
+    
     return `
         <div>
             ${docHeader(Topic, userID)}
@@ -62,14 +72,8 @@ export const createTable = (userID)=>{
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Kategória</th>
-                        <th>Felelős</th>
-                        <th>Felvéve</th>
-                        <th>Határidő</th>
-                        <th>Ellenőrizve</th>
-                        <th>Állapot</th>
-                        <th>Komment </th>
-                        ${createHeader(Topic.privateHeaders)}
+                       
+                        ${thead}
                     </tr>
                 </thead>
                 <tbody>${buildFeed(Topic.task, userID)}</tbody>

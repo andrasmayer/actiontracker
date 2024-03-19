@@ -1,0 +1,1 @@
+const {events} = await import(`../CreateTopic/Components/events.js${app_version}`)

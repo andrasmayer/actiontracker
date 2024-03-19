@@ -1,10 +1,9 @@
-const {Topic} = await import(`./Topic.js${app_version}`)
+const {Topic} = await import(`../../Components/Topic/Topic.js${app_version}`)
 const {events} = await import(`./events.js${app_version}`)
-const {createHeader, buildFeed, createTable} = await import(`./functions.js${app_version}`)
+const { createTable} = await import(`./functions.js${app_version}`)
 
 export const OpenTopic = (props) =>{
     const userID = props.userID == null ? 0:props.userID
-    //console.log(userID)
     const pageContent = document.getElementById("page-content")
     let context = {}
 
@@ -19,3 +18,4 @@ export const OpenTopic = (props) =>{
     }
     return context
 }
+

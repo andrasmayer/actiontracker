@@ -4,19 +4,19 @@ const {OpenTopic} = await import(`../../views/OpenTopic/OpenTopic.js${app_versio
 const {MyTasks} = await import(`../../views/MyTasks/MyTasks.js${app_version}`)
 const {CreateTopic} = await import(`../../views/CreateTopic/CreateTopic.js${app_version}`)
 const {TopicList} = await import(`../../views/TopicList/TopicList.js${app_version}`)
-
-/*export const views = {
-    OpenTopic:OpenTopic,
-    MyTasks:MyTasks,
-    CreateTopic:CreateTopic,
-    Home:Home,
-    TopicList:TopicList
-}*/
+const {EditTopic} = await import(`../../views/EditTopic/EditTopic.js${app_version}`)
+const {Logs} = await import(`../../views/Logging/log.js${app_version}`)
+//const {MyTopics} = await import(`../../views/MyTopics/MyTopics.js${app_version}`)
 
 export const views = {
-    Home:{title:"Főoldal", fnc:Home, login:false},
-    OpenTopic:{title:"Aktív topic", fnc:OpenTopic, login:false},
-    MyTasks:{title:"Feladataim", fnc:MyTasks, login:true},
+    home:{title:"Főoldal", fnc:Home, login:false},
+    OpenTopic:{title:"Topic", fnc:OpenTopic, login:false,hidden:true},
     CreateTopic:{title:"Topic létrehozása", fnc:CreateTopic, login:true},
-    TopicList:{title:"Lista", fnc:TopicList, login:false}
+    TopicList:{title:"Topic Lista", fnc:TopicList, login:false},
+
+    MyTasks:{title:"Feladataim", fnc:MyTasks, login:true},
+   // MyTopics:{title:"Saját Lista", fnc:MyTopics, login:true},
+    editTopic:{title:"Topic szerkesztése", fnc:EditTopic, login:false,hidden:true},
+    logs:{title:"Változások", fnc:Logs},
+
 }
