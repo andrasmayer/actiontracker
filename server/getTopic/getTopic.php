@@ -1,4 +1,8 @@
 <?php 
+
+//Még nem opex kompatibilis. users helyett mngmv
+
+
     $topic = [];
     include("../db/pdo_connect.php");
 
@@ -13,11 +17,11 @@
                 $topic[$key] = json_decode($row, true);
             }
         }
-        $sql = "select actiontracker_tasks.*,users.username as responsibleName,users2.username as delegatedName
+        $sql = "select actiontracker_tasks.*,actiontracker_users.username as responsibleName,users2.username as delegatedName
          FROM actiontracker_tasks
         left join actiontracker_users on actiontracker_users.dolszam = actiontracker_tasks.responsible
         left join actiontracker_users users2 on users2.dolszam = actiontracker_tasks.delegated
-        where topicid = ? order by tasks.id";
+        where topicid = ? order by actiontracker_tasks.id";
         $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute([$_GET["topicid"]]);  
         $topic["task"] = $sth->fetchAll(\PDO::FETCH_ASSOC);

@@ -10,9 +10,6 @@ export let Topic = {
 }
 
 
-//alert("Ertypes nem jó a 0 kulcs miatt")
-
-let requet
 export const importTopic = (obj)=>{ //Külső forrás EditTopics.js
   Topic = obj
   Topic.saveType = "edit"
@@ -66,8 +63,6 @@ export const buildAdmins = (obj) => {
   } else {
     return ""
   }
-
-  //else{return context}
 }
 
 export const buildHeaders = (obj) => {

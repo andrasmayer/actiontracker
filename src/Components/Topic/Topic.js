@@ -18,9 +18,9 @@ if(Topic != false && typeof Topic != "undefined"){
         Topic.contributors[key] = parseInt(Topic.contributors[key])
     })
     if(typeof Topic.privateHeaders == "string"){ Topic.privateHeaders = {} }
-    console.log(Topic)
 }
 
+console.log(Topic)
 export {Topic}
 
 

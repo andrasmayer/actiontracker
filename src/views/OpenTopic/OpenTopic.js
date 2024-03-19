@@ -6,7 +6,6 @@ export const OpenTopic = (props) =>{
     const userID = props.userID == null ? 0:props.userID
     const pageContent = document.getElementById("page-content")
     let context = {}
-
     if(Topic != false && typeof Topic != "undefined"){
         context.DOM = createTable(userID)
         context.events = props.userID == null ? () => {} : events
