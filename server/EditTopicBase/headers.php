@@ -1,6 +1,6 @@
 <?php
 
-$sql = "select privateHeaders, headerEditor from topics where id = ?";
+$sql = "select privateHeaders, headerEditor from actiontracker_topics where id = ?";
 $sth= $con->prepare($sql);
 $sth->execute([ $_POST["id"] ]);
 $headers_ = $sth->fetch(\PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ if( count($incomming) > 0 ){
    foreach($incomming  as $key){
       $editor[] = ["data"=>str_replace("$$"," ",$key),"className"=>$key,"visible"=>"true","private"=>"true"];
    }
-   $sql = "update topics set headerEditor = ? where id = ?";
+   $sql = "update actiontracker_topics set headerEditor = ? where id = ?";
    $sth= $con->prepare($sql);
    $sth->execute([ json_encode($editor),$_POST["id"] ]);
 }
