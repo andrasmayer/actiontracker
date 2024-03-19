@@ -5,7 +5,7 @@ if( !isset($_POST["privateHeaders"]) ){ $_POST["privateHeaders"] = "{}"; }
 else{ $_POST["privateHeaders"] =  json_encode($_POST["privateHeaders"]); }
 
 session_start();
-$sql = "INSERT INTO `topics`( `title`, `description`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`) 
+$sql = "INSERT INTO `actiontracker_topics`( `title`, `description`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`) 
 VALUES (?,?,?,?,?,?,?)";
 
 $stmt= $con->prepare($sql);
@@ -21,7 +21,7 @@ $stmt->execute([
 ]);
 
 
-$sql = "select max(id) from topics";
+$sql = "select max(id) from actiontracker_topics";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $sth->execute([ ]);
 $topicId = $sth->fetch(\PDO::FETCH_COLUMN,0);

@@ -2,11 +2,11 @@
 include("../db/pdo_connect.php");
 
 $sql = "select 
-users.username,
-users.dolszam as userID,
-user_job_titles.name as position 
+actiontracker_users.username,
+actiontracker_users.dolszam as userID,
+actiontracker_user_job_titles.name as position 
 from users 
-left join user_job_titles on user_job_titles.id = users.job_title
+left join actiontracker_user_job_titles on actiontracker_user_job_titles.id = users.job_title
 where username like ?";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $sth->execute([ "%$_GET[username]%" ]);

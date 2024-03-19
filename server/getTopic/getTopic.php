@@ -2,7 +2,7 @@
     $topic = [];
     include("../db/pdo_connect.php");
 
-    $sql = "select * FROM topics where id = ?";
+    $sql = "select * FROM actiontracker_topics where id = ?";
     $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $sth->execute([$_GET["topicid"]]);  
     $topic = $sth->fetch(\PDO::FETCH_ASSOC);
@@ -13,10 +13,10 @@
                 $topic[$key] = json_decode($row, true);
             }
         }
-        $sql = "select tasks.*,users.username as responsibleName,users2.username as delegatedName
-         FROM tasks
-        left join users on users.dolszam = tasks.responsible
-        left join users users2 on users2.dolszam = tasks.delegated
+        $sql = "select actiontracker_tasks.*,users.username as responsibleName,users2.username as delegatedName
+         FROM actiontracker_tasks
+        left join actiontracker_users on actiontracker_users.dolszam = actiontracker_tasks.responsible
+        left join actiontracker_users users2 on users2.dolszam = actiontracker_tasks.delegated
         where topicid = ? order by tasks.id";
         $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute([$_GET["topicid"]]);  
@@ -24,7 +24,7 @@
         $topic["contributorNames"] = [];
 
         forEach($topic["contributors"] as $userID){
-            $sql = "select username from users where dolszam = ?";
+            $sql = "select username from actiontracker_users where dolszam = ?";
             $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
             $sth->execute([$userID]);  
 

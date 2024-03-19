@@ -3,7 +3,7 @@ include("../db/pdo_connect.php");
 
 $task = $_POST["task"];
 
-$sql = "INSERT INTO `tasks`( `erTypes`, `responsible`, `status_1`, `status_2`, `comment`,  `expireDate`, `addin`, `topicid`, `action`) 
+$sql = "INSERT INTO `actiontracker_tasks`( `erTypes`, `responsible`, `status_1`, `status_2`, `comment`,  `expireDate`, `addin`, `topicid`, `action`) 
 VALUES (?,?,?,?,?,?,?,?,?)";
 
 $stmt= $con->prepare($sql);
@@ -21,7 +21,7 @@ $stmt->execute([
 	
 
 
-$sql = "select max(id)  from tasks where topicid = ?";
+$sql = "select max(id)  from actiontracker_tasks where topicid = ?";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $sth->execute([ $_POST["topicid"] ]);
 $taskId = $sth->fetch(\PDO::FETCH_COLUMN,0);
