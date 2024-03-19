@@ -5,8 +5,9 @@ $sql = "select
 actiontracker_users.username,
 actiontracker_users.dolszam as userID,
 actiontracker_user_job_titles.name as position 
-from users 
-left join actiontracker_user_job_titles on actiontracker_user_job_titles.id = users.job_title
+
+from actiontracker_users 
+left join actiontracker_user_job_titles on actiontracker_user_job_titles.id = actiontracker_users.job_title
 where username like ?";
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $sth->execute([ "%$_GET[username]%" ]);

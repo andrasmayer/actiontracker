@@ -93,10 +93,11 @@ ${
                 </div>
 
                 <div><ul id="admins"></ul></div>
-                <div class="row">
+                <div class="row"  style="padding:0">
                     <h3>Extra fejlécek</h3>
                     <div id="headerList"></div>
                     <input id="newHeader"> <button id="addHeader">+</button>
+
                 </div>                
             </div>
             <div class="center row createTopicCtn">

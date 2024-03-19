@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2024 at 02:12 PM
+-- Generation Time: Mar 19, 2024 at 11:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tasks`
+-- Table structure for table `actiontracker_tasks`
 --
 
-CREATE TABLE `tasks` (
+CREATE TABLE `actiontracker_tasks` (
   `id` int(11) NOT NULL,
   `erTypes` varchar(25) NOT NULL,
   `responsible` int(11) NOT NULL,
@@ -43,20 +43,20 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `tasks`
+-- Dumping data for table `actiontracker_tasks`
 --
 
-INSERT INTO `tasks` (`id`, `erTypes`, `responsible`, `delegated`, `status_1`, `status_2`, `comment`, `creationDate`, `expireDate`, `addin`, `topicid`, `action`) VALUES
-(1, '0', 0, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$1\":\"minta\"}', 1, ''),
-(2, '0', 0, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$1\":\"\"}', 1, '');
+INSERT INTO `actiontracker_tasks` (`id`, `erTypes`, `responsible`, `delegated`, `status_1`, `status_2`, `comment`, `creationDate`, `expireDate`, `addin`, `topicid`, `action`) VALUES
+(1, 'cat 1', 266248, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$1\":\"\",\"col$$2\":\"\",\"col$$3\":\"sadasd\"}', 1, ''),
+(2, 'cat 2', 0, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$2\":\"lkj\"}', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topics`
+-- Table structure for table `actiontracker_topics`
 --
 
-CREATE TABLE `topics` (
+CREATE TABLE `actiontracker_topics` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -70,19 +70,21 @@ CREATE TABLE `topics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `topics`
+-- Dumping data for table `actiontracker_topics`
 --
 
-INSERT INTO `topics` (`id`, `title`, `description`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`, `lastModified`, `headerEditor`) VALUES
-(1, 'Sample', 'Minta', 266248, '2024-03-13 15:09:07', '[\"266248\"]', '{\"v\":\"K\\u00e9rlek v\\u00e1lassz\",\"Cat 1\":\"Cat 1\",\"Cat 2\":\"Cat 2\"}', '{\"col$$1\":\"col 1\"}', '2024-03-13 14:39:42', '[{\"data\":\"Kategória\",\"visible\":\"true\",\"className\":\"erTypes\",\"private\":\"false\"},{\"data\":\"Felvéve\",\"visible\":\"false\",\"className\":\"creationDate\",\"private\":\"false\"},{\"data\":\"Felelős\",\"visible\":\"true\",\"className\":\"responsible\",\"private\":\"false\"},{\"data\":\"col 1\",\"className\":\"col$$1\",\"visible\":\"true\",\"private\":\"true\"},{\"data\":\"Delegált\",\"visible\":\"false\",\"className\":\"delegated\",\"private\":\"false\"},{\"data\":\"Határidő\",\"visible\":\"false\",\"className\":\"expireDate\",\"private\":\"false\"},{\"data\":\"Ellenőrizve\",\"visible\":\"false\",\"className\":\"status_1\",\"private\":\"false\"},{\"data\":\"Állapot\",\"visible\":\"true\",\"className\":\"status_2\",\"private\":\"false\"},{\"data\":\"Komment\",\"visible\":\"false\",\"className\":\"comment\",\"private\":\"false\"}]');
+INSERT INTO `actiontracker_topics` (`id`, `title`, `description`, `creator`, `creationDate`, `contributors`, `erTypes`, `privateHeaders`, `lastModified`, `headerEditor`) VALUES
+(1, 'Topic 1', 'sadf\nsad\nsa\nd\nasd', 266248, '2024-03-14 14:16:53', '[\"266248\"]', '{\"v\":\"K\\u00e9rlek v\\u00e1lassz\",\"cat 1\":\"cat 1\",\"cat 2\":\"cat 2\",\"cat 3\":\"cat 3\"}', '{\"col$$2\":\"col 2\"}', '2024-03-14 13:49:10', '[{\"data\":\"Kateg\\u00f3ria\",\"visible\":\"true\",\"className\":\"erTypes\",\"private\":\"false\"},{\"data\":\"col 2\",\"className\":\"col$$2\",\"visible\":\"true\",\"private\":\"true\"},{\"data\":\"Felel\\u0151s\",\"visible\":\"true\",\"className\":\"responsible\",\"private\":\"false\"},{\"data\":\"Deleg\\u00e1lt\",\"visible\":\"true\",\"className\":\"delegated\",\"private\":\"false\"},{\"data\":\"Felv\\u00e9ve\",\"visible\":\"true\",\"className\":\"creationDate\",\"private\":\"false\"},{\"data\":\"Hat\\u00e1rid\\u0151\",\"visible\":\"false\",\"className\":\"expireDate\",\"private\":\"false\"},{\"data\":\"Ellen\\u0151rizve\",\"visible\":\"true\",\"className\":\"status_1\",\"private\":\"false\"},{\"data\":\"\\u00c1llapot\",\"visible\":\"true\",\"className\":\"status_2\",\"private\":\"false\"},{\"data\":\"Komment\",\"visible\":\"true\",\"className\":\"comment\",\"private\":\"false\"},{\"data\":\"Akci\\u00f3\",\"visible\":\"true\",\"className\":\"action\",\"private\":\"false\"}]'),
+(2, '', '', 266248, '2024-03-14 14:36:27', '[\"266248\"]', '{\"v\":\"K\\u00e9rlek v\\u00e1lassz\"}', '{}', '2024-03-14 13:36:27', '[{\"data\":\"Kategória\",\"visible\":\"true\",\"className\":\"erTypes\",\"private\":\"false\"},{\"data\":\"Felelős\",\"visible\":\"true\",\"className\":\"responsible\",\"private\":\"false\"},{\"data\":\"Delegált\",\"visible\":\"true\",\"className\":\"delegated\",\"private\":\"false\"},{\"data\":\"Felvéve\",\"visible\":\"true\",\"className\":\"creationDate\",\"private\":\"false\"},{\"data\":\"Határidő\",\"visible\":\"true\",\"className\":\"expireDate\",\"private\":\"false\"},{\"data\":\"Ellenőrizve\",\"visible\":\"true\",\"className\":\"status_1\",\"private\":\"false\"},{\"data\":\"Állapot\",\"visible\":\"true\",\"className\":\"status_2\",\"private\":\"false\"},{\"data\":\"Komment\",\"visible\":\"true\",\"className\":\"comment\",\"private\":\"false\"},{\"data\":\"Akció\",\"visible\":\"true\",\"className\":\"action\",\"private\":\"false\"}]'),
+(3, 'Minta 3', 'Minta 3', 266248, '2024-03-19 11:00:10', '[\"266248\"]', '{\"v\":\"K\\u00e9rlek v\\u00e1lassz\",\"cat 1\":\"cat 1\",\"cat 2\":\"cat 2\"}', '{\"col$$1\":\"col 1\"}', '2024-03-19 10:00:10', '[{\"data\":\"Kategória\",\"visible\":\"true\",\"className\":\"erTypes\",\"private\":\"false\"},{\"data\":\"Felelős\",\"visible\":\"true\",\"className\":\"responsible\",\"private\":\"false\"},{\"data\":\"Delegált\",\"visible\":\"true\",\"className\":\"delegated\",\"private\":\"false\"},{\"data\":\"Felvéve\",\"visible\":\"true\",\"className\":\"creationDate\",\"private\":\"false\"},{\"data\":\"Határidő\",\"visible\":\"true\",\"className\":\"expireDate\",\"private\":\"false\"},{\"data\":\"Ellenőrizve\",\"visible\":\"true\",\"className\":\"status_1\",\"private\":\"false\"},{\"data\":\"Állapot\",\"visible\":\"true\",\"className\":\"status_2\",\"private\":\"false\"},{\"data\":\"Komment\",\"visible\":\"true\",\"className\":\"comment\",\"private\":\"false\"},{\"data\":\"Akció\",\"visible\":\"true\",\"className\":\"action\",\"private\":\"false\"},{\"data\":\"col1\",\"visible\":\"true\",\"className\":\"col$$1\",\"private\":\"true\"}]');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `actiontracker_users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `actiontracker_users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `dolszam` int(11) NOT NULL,
@@ -91,10 +93,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `actiontracker_users`
 --
 
-INSERT INTO `users` (`id`, `username`, `dolszam`, `job_title`, `passWord`) VALUES
+INSERT INTO `actiontracker_users` (`id`, `username`, `dolszam`, `job_title`, `passWord`) VALUES
 (1, 'Tóth Kristóf Bence', 270287, 1, '47bce5c74f589f4867dbd57e9ca9f808'),
 (2, 'Mayer András', 266248, 2, '47bce5c74f589f4867dbd57e9ca9f808'),
 (3, 'sample Tim', 222222, 2, '47bce5c74f589f4867dbd57e9ca9f808');
@@ -102,19 +104,19 @@ INSERT INTO `users` (`id`, `username`, `dolszam`, `job_title`, `passWord`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_job_titles`
+-- Table structure for table `actiontracker_user_job_titles`
 --
 
-CREATE TABLE `user_job_titles` (
+CREATE TABLE `actiontracker_user_job_titles` (
   `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `user_job_titles`
+-- Dumping data for table `actiontracker_user_job_titles`
 --
 
-INSERT INTO `user_job_titles` (`id`, `name`) VALUES
+INSERT INTO `actiontracker_user_job_titles` (`id`, `name`) VALUES
 (1, 'Admin'),
 (2, 'Operator');
 
@@ -123,27 +125,27 @@ INSERT INTO `user_job_titles` (`id`, `name`) VALUES
 --
 
 --
--- Indexes for table `tasks`
+-- Indexes for table `actiontracker_tasks`
 --
-ALTER TABLE `tasks`
+ALTER TABLE `actiontracker_tasks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `topics`
+-- Indexes for table `actiontracker_topics`
 --
-ALTER TABLE `topics`
+ALTER TABLE `actiontracker_topics`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `actiontracker_users`
 --
-ALTER TABLE `users`
+ALTER TABLE `actiontracker_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_job_titles`
+-- Indexes for table `actiontracker_user_job_titles`
 --
-ALTER TABLE `user_job_titles`
+ALTER TABLE `actiontracker_user_job_titles`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -151,27 +153,27 @@ ALTER TABLE `user_job_titles`
 --
 
 --
--- AUTO_INCREMENT for table `tasks`
+-- AUTO_INCREMENT for table `actiontracker_tasks`
 --
-ALTER TABLE `tasks`
+ALTER TABLE `actiontracker_tasks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `topics`
+-- AUTO_INCREMENT for table `actiontracker_topics`
 --
-ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
+ALTER TABLE `actiontracker_topics`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `user_job_titles`
+-- AUTO_INCREMENT for table `actiontracker_users`
 --
-ALTER TABLE `user_job_titles`
+ALTER TABLE `actiontracker_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `actiontracker_user_job_titles`
+--
+ALTER TABLE `actiontracker_user_job_titles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
