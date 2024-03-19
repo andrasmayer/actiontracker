@@ -8,6 +8,7 @@ export const FindUser = (data,className) =>{
     `
     if( data.length >=3 ){
         const list = ajax("get","./server/users/findUser.php","json",{username:data})
+
         list.forEach(itm=>{
             context += `<option value="${itm.userID}">${itm.username} (${itm.position})</option>`
         })

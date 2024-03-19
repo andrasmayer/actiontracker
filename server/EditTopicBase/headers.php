@@ -45,7 +45,7 @@ if( count($outgoing) > 0){
             $temp[] = $editor[$key];
         }
     }
-        $sql = "update topics set headerEditor = ? where id = ?";
+        $sql = "update actiontracker_topics set headerEditor = ? where id = ?";
         $sth= $con->prepare($sql);
         $sth->execute([ json_encode($temp),$_POST["id"] ]);
 }
