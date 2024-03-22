@@ -7,7 +7,7 @@ include("../db/pdo_connect.php");
  *                                          *
  *******************************************/
 
-changeLog($_SESSION["userID"], "tasks",  $_POST["rowid"],  $_POST["column"], $_POST["value"]);
+changeLog($_SESSION["dolszam"], "tasks",  $_POST["rowid"],  $_POST["column"], $_POST["value"]);
 
 function changeLog( $userID, $type, $resourceId, $colname, $value){
     global $con;

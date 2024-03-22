@@ -2,5 +2,5 @@
 
 session_start();
 //session_destroy();
-//$_SESSION["userID"] = 270287;
-echo $_SESSION["userID"];
+//$_SESSION["dolszam"] = 270287;
+echo $_SESSION["dolszam"];
