@@ -114,14 +114,24 @@ export const events = (importedTopic) => {
   //Létrehozás
   const createTopic = document.getElementById("createTopic")
   createTopic.addEventListener("click", () => {
+
+
+  Topic.contributors = Topic.contributors.filter(function(item, pos, self) {
+      return self.indexOf(item) == pos;
+  })
+
+    
+    Topic.privateHeaders_stringified = JSON.stringify(Topic.privateHeaders)
     const res = ajax("post", `./server/${Topic.URL}`, "html", Topic)
 
 
     if (Topic.URL == `CreateTopic/CreateTopic.php`) {
       location.href = `?view=editTopic&topicid=${res}`
     } else {
-      alert("Adatok módosítva")
-      location.reload()
+      //console.log(Topic.contributors)
+      console.log(res)
+      //("Adatok módosítva")
+      //location.reload()
     }
 
   })
@@ -133,7 +143,7 @@ export const events = (importedTopic) => {
     headerStatus.forEach(itm=>{
       itm.addEventListener("change",(e)=>{
       const id = e.target.parentNode.getAttribute("headerid") 
-      console.log(Topic.headerEditor[id])
+
       Topic.headerEditor[id].visible = JSON.stringify(e.target.checked) 
       const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
       })
