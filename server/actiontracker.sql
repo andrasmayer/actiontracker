@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 11:01 AM
+-- Generation Time: Mar 22, 2024 at 11:27 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `actiontracker`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `actiontracker_changelogs`
+--
+
+CREATE TABLE `actiontracker_changelogs` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `oldValue` text NOT NULL,
+  `newValue` text NOT NULL,
+  `resourceId` int(11) NOT NULL,
+  `colname` text NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `actiontracker_changelogs`
+--
+
+INSERT INTO `actiontracker_changelogs` (`id`, `user`, `type`, `oldValue`, `newValue`, `resourceId`, `colname`, `time`) VALUES
+(1, 266248, 'tasks', 'NA most jó????\n\n\n\n\n\n', 'ezek szerint igen\n\n\n\n\n\n', 1, 'col 2', '2024-03-22 10:21:59'),
+(2, 266248, 'tasks', '266248', 'sample1', 1, 'responsible', '2024-03-22 10:22:52'),
+(3, 266248, 'tasks', '0', '222222', 1, 'responsible', '2024-03-22 10:21:59'),
+(4, 266248, 'tasks', '0000-00-00', '2024-03-27', 1, 'creationDate', '2024-03-22 10:21:59'),
+(5, 266248, 'tasks', '0', '1', 1, 'status_1', '2024-03-22 10:21:59'),
+(6, 266248, 'tasks', 'sdsad', 'Tesztelünk', 1, 'comment', '2024-03-22 10:21:59'),
+(7, 266248, 'tasks', '', 'Találd ki', 1, 'action', '2024-03-22 10:21:59'),
+(8, 266248, 'tasks', 'Találd ki', 'most már van timestamp is\n', 1, 'action', '2024-03-22 10:22:10');
 
 -- --------------------------------------------------------
 
@@ -47,8 +78,8 @@ CREATE TABLE `actiontracker_tasks` (
 --
 
 INSERT INTO `actiontracker_tasks` (`id`, `erTypes`, `responsible`, `delegated`, `status_1`, `status_2`, `comment`, `creationDate`, `expireDate`, `addin`, `topicid`, `action`) VALUES
-(1, 'cat 1', 266248, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$1\":\"\",\"col$$2\":\"\",\"col$$3\":\"sadasd\"}', 1, ''),
-(2, 'cat 2', 0, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$2\":\"lkj\"}', 1, '');
+(1, 'cat 1', 222222, 0, 1, 0, 'Tesztelünk', '2024-03-27', '0000-00-00', '{\"col$$1\":\"\",\"col$$2\":\"ezek szerint igen\\n\\n\\n\\n\\n\\n\",\"col$$3\":\"sadasd\"}', 1, 'most már van timestamp is\n'),
+(2, 'cat 2', 266248, 0, 0, 0, '', '0000-00-00', '0000-00-00', '{\"col$$2\":\"lkjdddss\"}', 1, '');
 
 -- --------------------------------------------------------
 
@@ -125,6 +156,12 @@ INSERT INTO `actiontracker_user_job_titles` (`id`, `name`) VALUES
 --
 
 --
+-- Indexes for table `actiontracker_changelogs`
+--
+ALTER TABLE `actiontracker_changelogs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `actiontracker_tasks`
 --
 ALTER TABLE `actiontracker_tasks`
@@ -151,6 +188,12 @@ ALTER TABLE `actiontracker_user_job_titles`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `actiontracker_changelogs`
+--
+ALTER TABLE `actiontracker_changelogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `actiontracker_tasks`
