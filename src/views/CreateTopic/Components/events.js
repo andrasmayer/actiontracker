@@ -120,8 +120,10 @@ export const events = (importedTopic) => {
     if (Topic.URL == `CreateTopic/CreateTopic.php`) {
       location.href = `?view=editTopic&topicid=${res}`
     } else {
-      alert("Adatok módosítva")
-      location.reload()
+      console.log(res)
+
+      //alert("Adatok módosítva")
+      //location.reload()
     }
 
   })

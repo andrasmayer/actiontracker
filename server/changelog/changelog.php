@@ -36,7 +36,7 @@ if($result != $_POST["value"]){
     $sth->execute([ $_POST["value"],$_POST["resourceId"] ]);
     */
 
-    $sql = "INSERT INTO `actiontracker_changelogs`(`user`, `type`, `oldValue`, `newValue`, `resourceId`, `colname`)
+    $sql = "INSERT INTO `actiontracker_changelogs`(`userID`, `type`, `oldValue`, `newValue`, `resourceId`, `colname`)
      VALUES (?,?,?,?,?,?)";
     $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $sth->execute([ $_POST["userID"], $_POST["type"], $result, $_POST["value"], $_POST["resourceId"], $_POST["colname"] ]);
