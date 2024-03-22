@@ -121,8 +121,7 @@ export const events = (importedTopic) => {
   })
 
     
-    Topic.privateHeaders_stringified = JSON.stringify(Topic.privateHeaders)
-    const res = ajax("post", `./server/${Topic.URL}`, "html", Topic)
+    const res = ajax("post", `./server/${Topic.URL}`, "json", Topic)
 
 
     if (Topic.URL == `CreateTopic/CreateTopic.php`) {

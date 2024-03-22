@@ -3,12 +3,12 @@ include("../db/pdo_connect.php");
 
 $sql = "
 select mngmv.username,
-mnmgv.dolszam,
+mngmv.dolszam as userID,
 mngmv_job_title.name as position
 
 from mngmv
 left join mngmv_job_title on mngmv_job_title.id = mngmv.job_title
-where username like ?
+where username like ? and kilepes = '0000-00-00'
 ";
 
 $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
