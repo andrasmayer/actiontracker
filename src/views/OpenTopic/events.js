@@ -21,9 +21,7 @@ const fire = (event, keyCode, Topic) =>{
             OBJ.column  = "addin";
             OBJ.value   = JSON.stringify(Topic.task[rowIndex].addin);
         }
-
-        const editor = ajax("post", "./server/editTopic/editTask.php", "json", OBJ)
-        console.log(editor)
+        const editor = ajax("post", "./server/editTopic/editTask.php", "html", OBJ)
     }
 
 }
