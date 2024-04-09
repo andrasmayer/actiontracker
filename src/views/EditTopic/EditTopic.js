@@ -1,12 +1,12 @@
 const {Topic} = await import(`../../Components/Topic/Topic.js${app_version}`)
 const { CreateTopic} = await import(`../CreateTopic/CreateTopic.js${app_version}`)
-const {events} = await import(`../CreateTopic/Components/events.js${app_version}`)
+
 const { importTopic,buildCategories, buildAdmins, buildHeaders} = await import(`../CreateTopic/Components/handlers.js${app_version}`)
 
 
 export const EditTopic = (props) =>{
 
-    if(Topic.creator != props.userID){
+    if(Topic.contributors.includes(props.userID) == false ){
         return "<div>Hozzáférés megtagadva</div>"
     }
 
