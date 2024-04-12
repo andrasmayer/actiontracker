@@ -2,6 +2,7 @@ let {Topic, buildCategories, buildAdmins, buildHeaders} = await import(`./Compon
 const {events} = await import(`./Components/events.js${app_version}`)
 const { $_GET } = await import(`../../Hooks/findGET/findGET.js${app_version}`)
 const { ajax } = await import(`../../Hooks/ajax/ajax.js${app_version}`)
+const { json_decode } = await import(`../../Hooks/json_decode/json_decode.js${app_version}`)
 
 const editHeaders = () =>{
 
@@ -31,7 +32,6 @@ const editHeaders = () =>{
 
     let context = ``
     Topic.headerEditor.forEach((itm,key)=>{
-        
         context += 
             `<div class="editHeader" data="${itm.data}" visible="${itm.visible}"  headerid="${key}">
                 ${itm.data}

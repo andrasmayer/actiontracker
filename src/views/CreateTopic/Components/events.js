@@ -39,6 +39,7 @@ export const events = (importedTopic) => {
       if (Topic.erTypes[newCatName.value] == null) {
         Topic.erTypes[newCatName.value] = newCatName.value
         buildCategories(Topic.erTypes)
+        newCatName.value = ""
       } else {
         alert("Ez a kategória már foglalt")
       }
@@ -62,6 +63,7 @@ export const events = (importedTopic) => {
       })
       newAdmin.value = selectedOption
       newAdmin.setAttribute("userid", e.target.value)
+
     })
   })
 
@@ -90,21 +92,25 @@ export const events = (importedTopic) => {
       Topic.contributors.push(newAdmin.getAttribute("userid"))
       buildAdmins(Topic.contributorNames)
       userList.innerHTML = ""
+      newAdmin.value = ""
     }
+    
   })
 
   //////Fejlécek
   const newHeader = document.getElementById("newHeader")
   const addHeader = document.getElementById("addHeader")
-  const headerList = document.getElementById("headerList")
+
 
   addHeader.addEventListener("click", () => {
     if (newHeader.value.length < 3) {
       alert("Fejléc minimum 3 karakter!")
     } else {
       if (Topic.privateHeaders[newHeader.value] == null) {
+        
         Topic.privateHeaders[newHeader.value.split(" ").join("$$") ] = newHeader.value
         buildHeaders(Topic.privateHeaders)
+        newHeader.value = ""
       } else {
         alert("Ez a fejléc már foglalt")
       }
@@ -121,17 +127,12 @@ export const events = (importedTopic) => {
   })
 
     
-    Topic.privateHeaders_stringified = JSON.stringify(Topic.privateHeaders)
-    const res = ajax("post", `./server/${Topic.URL}`, "html", Topic)
-
-
+    const res = ajax("post", `./server/${Topic.URL}`, "json", Topic)
     if (Topic.URL == `CreateTopic/CreateTopic.php`) {
       location.href = `?view=editTopic&topicid=${res}`
     } else {
-      //console.log(Topic.contributors)
-      console.log(res)
-      //("Adatok módosítva")
-      //location.reload()
+      alert("Adatok módosítva")
+      location.reload()
     }
 
   })
@@ -159,8 +160,7 @@ export const events = (importedTopic) => {
         tempList.push(resource)
         id++
       })
-      Topic.headerEditor = tempList
-      const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
+      const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "json", {data: JSON.stringify(tempList),id:Topic.id})
     })
   }
 }
