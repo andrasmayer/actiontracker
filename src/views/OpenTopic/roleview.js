@@ -35,7 +35,10 @@ export const responsibleView = (itm, Topic, key) => {
     Topic.headerEditor.forEach((itm2,key)=>{
         if(itm2.visible == "true"){
             switch(itm2.className){
-                case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
+                case "erTypes" :
+                    let et = Topic.erTypes[itm.erTypes]  == null ? "" : Topic.erTypes[itm.erTypes];
+                    thead += `<td>${et}</td>`;
+                    break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td><input class="delegated" value="${itm.delegatedName}"></td>`;break;
                 case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
@@ -63,7 +66,10 @@ export const delegatedView = (itm, Topic, key) => {
     Topic.headerEditor.forEach((itm2,key)=>{
         if(itm2.visible == "true"){
             switch(itm2.className){
-                case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
+                case "erTypes" :
+                        let et = Topic.erTypes[itm.erTypes]  == null ? "" : Topic.erTypes[itm.erTypes];
+                        thead += `<td>${et}</td>`;
+                        break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td>${itm.delegatedName}</td>`;break;
                 case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
@@ -91,7 +97,10 @@ export const guestView = (itm, Topic) => {
     Topic.headerEditor.forEach((itm2,key)=>{
         if(itm2.visible == "true"){
             switch(itm2.className){
-                case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
+                case "erTypes" :
+                    let et = Topic.erTypes[itm.erTypes]  == null ? "" : Topic.erTypes[itm.erTypes];
+                    thead += `<td>${et}</td>`;
+                    break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td>${itm.delegatedName}</td>`;break;
                 case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
