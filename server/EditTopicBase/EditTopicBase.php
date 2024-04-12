@@ -66,12 +66,12 @@ $stmt= $con->prepare($sql);
 $stmt->execute([
    $_POST["title"],
    $_POST["description"],
-   json_encode($_POST["contributors"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-   json_encode($_POST["erTypes"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-   json_encode($_POST["privateHeaders"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+   json_encode($_POST["contributors"],  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+   json_encode($_POST["erTypes"],  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+   json_encode($_POST["privateHeaders"],  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
    $_POST["id"]
 ]);
-
+echo json_encode($_POST["privateHeaders"]);
 
 include("headers.php");
 

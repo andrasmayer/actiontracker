@@ -20,7 +20,6 @@ if(Topic != false && typeof Topic != "undefined"){
     if(typeof Topic.privateHeaders == "string"){ Topic.privateHeaders = {} }
 }
 
-console.log(Topic)
 export {Topic}
 
 
