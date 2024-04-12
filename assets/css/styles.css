@@ -190,3 +190,18 @@ input, select, textarea{
     background-color: rgb(179, 164, 130, .2) ;
     padding: 1px;
 }
+
+
+
+.fixTableHead thead{
+    height:75;
+}
+
+.fixTableHead th {
+
+    z-index:5000;
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    color: white;
+  }

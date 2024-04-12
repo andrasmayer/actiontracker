@@ -1,10 +1,12 @@
 const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`)
 
 export const adminView = (itm, Topic, key) => {
-    
+
     let thead = "";
     Topic.headerEditor.forEach((itm2,key)=>{
-
+        //console.log(itm.addin[itm2.className])
+        //console.log(itm2.className)
+        console.log(itm2)
         if(itm2.visible == "true"){
             switch(itm2.className){
                 case "erTypes" : thead += `<td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>`;break;
@@ -36,7 +38,7 @@ export const responsibleView = (itm, Topic, key) => {
                 case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td><input class="delegated" value="${itm.delegatedName}"></td>`;break;
-                case "creationDate" : thead += `<td>${itm.creationDate}"></td>`;break;
+                case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
                 case "expireDate" : thead += `<td>${itm.expireDate}</td>`;break;
                 case "status_1" : thead += `<td>${Topic.status_1[itm.status_1]}</td>`;break;
                 case "status_2" : thead += `<td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>`;break;
