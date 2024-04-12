@@ -25,3 +25,7 @@
 .newTopicCtn .row textarea{
     height:100px;
 }
+
+.editHeader{
+    padding:5px;
+}
