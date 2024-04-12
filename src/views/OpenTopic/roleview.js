@@ -4,9 +4,7 @@ export const adminView = (itm, Topic, key) => {
 
     let thead = "";
     Topic.headerEditor.forEach((itm2,key)=>{
-        //console.log(itm.addin[itm2.className])
-        //console.log(itm2.className)
-        console.log(itm2)
+
         if(itm2.visible == "true"){
             switch(itm2.className){
                 case "erTypes" : thead += `<td>${DropDowns_Object({element:Topic.erTypes, className:"erTypes", selected:itm.erTypes})}</td>`;break;
@@ -18,7 +16,9 @@ export const adminView = (itm, Topic, key) => {
                 case "status_2" : thead += `<td>${Topic.status_1[itm.status_2]}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.className}">${itm.addin[itm2.className]}</textarea></td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td><textarea class="addin_${itm2.className}">${value}</textarea></td>`;
                 break;
             }
         }
@@ -44,7 +44,9 @@ export const responsibleView = (itm, Topic, key) => {
                 case "status_2" : thead += `<td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.data}">${itm.addin[itm2.data]}</textarea></td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td><textarea class="addin_${itm2.className}">${value}</textarea></td>`;
                 break;
             }
         }
@@ -70,7 +72,9 @@ export const delegatedView = (itm, Topic, key) => {
                 case "status_2" : thead += `<td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.data}">${itm.addin[itm2.data]}</textarea></td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td><textarea class="addin_${itm2.data}">${value}</textarea></td>`;
                 break;
             }
         }
@@ -96,7 +100,9 @@ export const guestView = (itm, Topic) => {
                 case "status_2" : thead += `<td>${Topic.status_1[itm.status_2]}</td>`;break;
                 case "comment" : thead += `<td>${itm.comment}</td>`;break;
                 case "action" : thead += `<td>${itm.action}</td>`;break;
-                default: thead += `<td>${itm.addin[itm2.data]}</td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td>${value}</td>`;
                 break;
             }
         }
