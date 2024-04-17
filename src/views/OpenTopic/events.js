@@ -1,5 +1,7 @@
 ﻿const {ajax} = await import(`../../Hooks/ajax/ajax.js${app_version}`)
 const {FindUser} = await import(`../../Components/Users/FindUser/FindUser.js${app_version}`)
+const { datatables2} = await import(`../../Hooks/datatables2/datatables2.js${app_version}`)
+
 
 const fire = (event, keyCode, Topic) =>{
     if(keyCode == null || keyCode == 13){
@@ -93,5 +95,44 @@ export const events = (Topic) =>{
             fire(event, null, Topic)
         })
     })
+
+
+
+
+
+
+
+
+    //For datatable2
+    const tempTasks = [];
+    Topic.task.forEach(itm=>{
+        const tempItm = {};
+        Object.keys(itm).forEach((key)=>{
+            if(key == 'addin'){
+                Object.keys(itm[key]).forEach((key2)=>{
+                    tempItm[key2] = String(itm[key][key2])
+                })
+            }
+            else if(key == "responsible"){ 
+// tempItm["responsibleName"] = String(itm[key])
+
+
+             }
+            else{   tempItm[key] = String(itm[key])  }
+        })
+        tempTasks.push(tempItm)
+    })
+//console.log(JSON.stringify( tempTasks) )
+    
+    const tempHeader =  ["id"]
+    Topic.headerEditor.forEach(itm=>{ 
+        if(itm.className == "responsible"){itm.className = "responsibleName" }
+        tempHeader.push(itm.className) })
+    datatables2({table:"taskList",feed:tempTasks,header:tempHeader})
+
+
+
+
+
 
 }

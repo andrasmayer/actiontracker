@@ -2,7 +2,6 @@ let {Topic, buildCategories, buildAdmins, buildHeaders} = await import(`./Compon
 const {events} = await import(`./Components/events.js${app_version}`)
 const { $_GET } = await import(`../../Hooks/findGET/findGET.js${app_version}`)
 const { ajax } = await import(`../../Hooks/ajax/ajax.js${app_version}`)
-const { json_decode } = await import(`../../Hooks/json_decode/json_decode.js${app_version}`)
 
 const editHeaders = () =>{
 
@@ -11,7 +10,7 @@ const editHeaders = () =>{
         Topic.headerEditor = [
             {data:"Kategória",visible:"true",className:"erTypes",private:"false"},
             {data:"Felelős",visible:"true",className:"responsible",private:"false"},
-            {data:"Delegált",visible:"true",className:"delegated",private:"false"},
+            {data:"Közreműködő",visible:"true",className:"delegated",private:"false"},
             {data:"Felvéve",visible:"true",className:"creationDate",private:"false"},
             {data:"Határidő",visible:"true",className:"expireDate",private:"false"},
             {data:"Ellenőrizve",visible:"true",className:"status_1",private:"false"},

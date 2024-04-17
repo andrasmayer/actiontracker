@@ -9,7 +9,7 @@ $sth->execute([ $_POST["userName"], md5( $_POST["passWord"]) ]);
 $response = $sth->fetch(\PDO::FETCH_COLUMN,0);
 
 if($response != false){
-    $_SESSION["userID"] = $response;
+    $_SESSION["dolszam"] = $response;
 }
 
 echo json_encode($response);
