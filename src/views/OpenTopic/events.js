@@ -24,6 +24,10 @@ const fire = (event, keyCode, Topic) =>{
             OBJ.value   = JSON.stringify(Topic.task[rowIndex].addin);
         }
         const editor = ajax("post", "./server/editTopic/editTask.php", "html", OBJ)
+
+
+   //console.log(event.target.classList.contains("responsible"))
+
     }
 
 }
@@ -85,6 +89,7 @@ export const events = (Topic) =>{
                     itm.value = event_2.target.value
                     fire(event, 13, Topic)
                     itm.value = selectedOption
+                    itm.parentNode.querySelector("select").remove()
                 })
             }
         })
@@ -95,12 +100,6 @@ export const events = (Topic) =>{
             fire(event, null, Topic)
         })
     })
-
-
-
-
-
-
 
 
     //For datatable2
@@ -114,25 +113,17 @@ export const events = (Topic) =>{
                 })
             }
             else if(key == "responsible"){ 
-// tempItm["responsibleName"] = String(itm[key])
-
 
              }
             else{   tempItm[key] = String(itm[key])  }
         })
         tempTasks.push(tempItm)
     })
-//console.log(JSON.stringify( tempTasks) )
     
     const tempHeader =  ["id"]
     Topic.headerEditor.forEach(itm=>{ 
         if(itm.className == "responsible"){itm.className = "responsibleName" }
         tempHeader.push(itm.className) })
-    datatables2({table:"taskList",feed:tempTasks,header:tempHeader})
-
-
-
-
-
+        datatables2({table:"taskList",feed:tempTasks,header:tempHeader})
 
 }
