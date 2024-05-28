@@ -34,6 +34,7 @@ export const App = ()=>{
     const Login = () =>{
         const response = ajax("post","../../server/Login/Login.php","json",userData)
         response == false ? alert("Belépés sikertelen") : location.href = "../../"
+       console.log(response)
     }
 
     userName.addEventListener("keyup",(event)=>{

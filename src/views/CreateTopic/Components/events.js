@@ -39,6 +39,7 @@ export const events = (importedTopic) => {
       if (Topic.erTypes[newCatName.value] == null) {
         Topic.erTypes[newCatName.value] = newCatName.value
         buildCategories(Topic.erTypes)
+        newCatName.value = ""
       } else {
         alert("Ez a kategória már foglalt")
       }
@@ -62,6 +63,7 @@ export const events = (importedTopic) => {
       })
       newAdmin.value = selectedOption
       newAdmin.setAttribute("userid", e.target.value)
+
     })
   })
 
@@ -90,21 +92,25 @@ export const events = (importedTopic) => {
       Topic.contributors.push(newAdmin.getAttribute("userid"))
       buildAdmins(Topic.contributorNames)
       userList.innerHTML = ""
+      newAdmin.value = ""
     }
+    
   })
 
   //////Fejlécek
   const newHeader = document.getElementById("newHeader")
   const addHeader = document.getElementById("addHeader")
-  const headerList = document.getElementById("headerList")
+
 
   addHeader.addEventListener("click", () => {
     if (newHeader.value.length < 3) {
       alert("Fejléc minimum 3 karakter!")
     } else {
       if (Topic.privateHeaders[newHeader.value] == null) {
+        
         Topic.privateHeaders[newHeader.value.split(" ").join("$$") ] = newHeader.value
         buildHeaders(Topic.privateHeaders)
+        newHeader.value = ""
       } else {
         alert("Ez a fejléc már foglalt")
       }
@@ -114,9 +120,14 @@ export const events = (importedTopic) => {
   //Létrehozás
   const createTopic = document.getElementById("createTopic")
   createTopic.addEventListener("click", () => {
-    const res = ajax("post", `./server/${Topic.URL}`, "html", Topic)
 
 
+  Topic.contributors = Topic.contributors.filter(function(item, pos, self) {
+      return self.indexOf(item) == pos;
+  })
+
+    
+    const res = ajax("post", `./server/${Topic.URL}`, "json", Topic)
     if (Topic.URL == `CreateTopic/CreateTopic.php`) {
       location.href = `?view=editTopic&topicid=${res}`
     } else {
@@ -135,7 +146,7 @@ export const events = (importedTopic) => {
     headerStatus.forEach(itm=>{
       itm.addEventListener("change",(e)=>{
       const id = e.target.parentNode.getAttribute("headerid") 
-      console.log(Topic.headerEditor[id])
+
       Topic.headerEditor[id].visible = JSON.stringify(e.target.checked) 
       const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
       })
@@ -151,8 +162,7 @@ export const events = (importedTopic) => {
         tempList.push(resource)
         id++
       })
-      Topic.headerEditor = tempList
-      const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "html", {data: JSON.stringify(Topic.headerEditor),id:Topic.id})
+      const updateHeaders = ajax("post", `./server/EditTopicBase/editHeaders.php`, "json", {data: JSON.stringify(tempList),id:Topic.id})
     })
   }
 }

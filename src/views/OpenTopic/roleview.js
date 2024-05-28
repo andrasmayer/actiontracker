@@ -1,7 +1,7 @@
 const {DropDowns,DropDowns_Object} = await import(`./DropDowns.js${app_version}`)
 
 export const adminView = (itm, Topic, key) => {
-    
+
     let thead = "";
     Topic.headerEditor.forEach((itm2,key)=>{
 
@@ -16,7 +16,9 @@ export const adminView = (itm, Topic, key) => {
                 case "status_2" : thead += `<td>${Topic.status_1[itm.status_2]}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.className}">${itm.addin[itm2.className]}</textarea></td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td><textarea class="addin_${itm2.className}">${value}</textarea></td>`;
                 break;
             }
         }
@@ -33,16 +35,21 @@ export const responsibleView = (itm, Topic, key) => {
     Topic.headerEditor.forEach((itm2,key)=>{
         if(itm2.visible == "true"){
             switch(itm2.className){
-                case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
+                case "erTypes" :
+                    let et = Topic.erTypes[itm.erTypes]  == null ? "" : Topic.erTypes[itm.erTypes];
+                    thead += `<td>${et}</td>`;
+                    break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td><input class="delegated" value="${itm.delegatedName}"></td>`;break;
-                case "creationDate" : thead += `<td>${itm.creationDate}"></td>`;break;
+                case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
                 case "expireDate" : thead += `<td>${itm.expireDate}</td>`;break;
                 case "status_1" : thead += `<td>${Topic.status_1[itm.status_1]}</td>`;break;
                 case "status_2" : thead += `<td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.data}">${itm.addin[itm2.data]}</textarea></td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td><textarea class="addin_${itm2.className}">${value}</textarea></td>`;
                 break;
             }
         }
@@ -59,7 +66,10 @@ export const delegatedView = (itm, Topic, key) => {
     Topic.headerEditor.forEach((itm2,key)=>{
         if(itm2.visible == "true"){
             switch(itm2.className){
-                case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
+                case "erTypes" :
+                        let et = Topic.erTypes[itm.erTypes]  == null ? "" : Topic.erTypes[itm.erTypes];
+                        thead += `<td>${et}</td>`;
+                        break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td>${itm.delegatedName}</td>`;break;
                 case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
@@ -68,7 +78,9 @@ export const delegatedView = (itm, Topic, key) => {
                 case "status_2" : thead += `<td>${DropDowns({element:Topic.status_2, className:"status_2", selected:itm.status_2})}</td>`;break;
                 case "comment" : thead += `<td><textarea class="comment">${itm.comment}</textarea></td>`;break;
                 case "action" : thead += `<td><textarea class="action">${itm.action}</textarea></td>`;break;
-                default: thead += `<td><textarea class="addin_${itm2.data}">${itm.addin[itm2.data]}</textarea></td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td><textarea class="addin_${itm2.data}">${value}</textarea></td>`;
                 break;
             }
         }
@@ -85,7 +97,10 @@ export const guestView = (itm, Topic) => {
     Topic.headerEditor.forEach((itm2,key)=>{
         if(itm2.visible == "true"){
             switch(itm2.className){
-                case "erTypes" : thead += `<td>${Topic.erTypes[itm.erTypes]}</td>`;break;
+                case "erTypes" :
+                    let et = Topic.erTypes[itm.erTypes]  == null ? "" : Topic.erTypes[itm.erTypes];
+                    thead += `<td>${et}</td>`;
+                    break;
                 case "responsible" : thead += `<td>${itm.responsibleName}</td>`;break;
                 case "delegated" : thead += `<td>${itm.delegatedName}</td>`;break;
                 case "creationDate" : thead += `<td>${itm.creationDate}</td>`;break;
@@ -94,7 +109,9 @@ export const guestView = (itm, Topic) => {
                 case "status_2" : thead += `<td>${Topic.status_1[itm.status_2]}</td>`;break;
                 case "comment" : thead += `<td>${itm.comment}</td>`;break;
                 case "action" : thead += `<td>${itm.action}</td>`;break;
-                default: thead += `<td>${itm.addin[itm2.data]}</td>`;
+                default:
+                    let value = itm.addin[itm2.className]  == null ? "" : itm.addin[itm2.className];
+                    thead += `<td>${value}</td>`;
                 break;
             }
         }

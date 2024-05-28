@@ -10,7 +10,7 @@ const editHeaders = () =>{
         Topic.headerEditor = [
             {data:"Kategória",visible:"true",className:"erTypes",private:"false"},
             {data:"Felelős",visible:"true",className:"responsible",private:"false"},
-            {data:"Delegált",visible:"true",className:"delegated",private:"false"},
+            {data:"Közreműködő",visible:"true",className:"delegated",private:"false"},
             {data:"Felvéve",visible:"true",className:"creationDate",private:"false"},
             {data:"Határidő",visible:"true",className:"expireDate",private:"false"},
             {data:"Ellenőrizve",visible:"true",className:"status_1",private:"false"},
@@ -31,7 +31,6 @@ const editHeaders = () =>{
 
     let context = ``
     Topic.headerEditor.forEach((itm,key)=>{
-        
         context += 
             `<div class="editHeader" data="${itm.data}" visible="${itm.visible}"  headerid="${key}">
                 ${itm.data}

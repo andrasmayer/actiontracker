@@ -49,3 +49,23 @@ if( count($outgoing) > 0){
         $sth= $con->prepare($sql);
         $sth->execute([ json_encode($temp),$_POST["id"] ]);
 }
+
+
+/********************************************
+ *              ChangeLog                   *
+ *                                          *
+ *******************************************/
+foreach($incomming as $column){
+    $columnName = str_replace("$$"," ",$column);
+    $sql = "INSERT INTO `actiontracker_changelogs`(`user`, `type`, `oldValue`, `newValue`, `resourceId`, `colname`)
+    VALUES (?,?,?,?,?,?)";
+    $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $sth->execute([ $_SESSION["dolszam"], "topics","","Fejléc hozzáadva", $_POST["id"], $columnName ]);
+}
+foreach($outgoing as $column){
+    $columnName = str_replace("$$"," ",$column);
+    $sql = "INSERT INTO `actiontracker_changelogs`(`user`, `type`, `oldValue`, `newValue`, `resourceId`, `colname`)
+    VALUES (?,?,?,?,?,?)";
+    $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $sth->execute([ $_SESSION["dolszam"], "topics","","Fejléc törölve", $_POST["id"], $columnName ]);
+}

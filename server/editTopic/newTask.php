@@ -3,8 +3,8 @@ include("../db/pdo_connect.php");
 
 $task = $_POST["task"];
 
-$sql = "INSERT INTO `actiontracker_tasks`( `erTypes`, `responsible`, `status_1`, `status_2`, `comment`,  `expireDate`, `addin`, `topicid`, `action`) 
-VALUES (?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO `actiontracker_tasks`( `erTypes`, `responsible`, `status_1`, `status_2`, `comment`,  `expireDate`, `addin`, `topicid`, `action`,creationDate) 
+VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 $stmt= $con->prepare($sql);
 $stmt->execute([
@@ -16,7 +16,8 @@ $stmt->execute([
     $task["expireDate"],
     json_encode($task["addin"]),
     $_POST["topicid"],
-    $task["action"]
+    $task["action"],
+    date("Y-m-d")
 ]);
 	
 
